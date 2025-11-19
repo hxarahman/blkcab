@@ -4,11 +4,28 @@ import coffeeMenuImage from "@/assets/brand-drink.jpg";
 
 export const OrderSection = () => {
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">
-          Order Now
-        </h2>
+    <section className="bg-background">
+      {/* Hero Video */}
+      <div className="relative h-[60vh] w-full overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/order-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
+        <div className="relative h-full flex items-center justify-center">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-primary-foreground">
+            Order Now
+          </h2>
+        </div>
+      </div>
+
+      {/* Order Cards */}
+      <div className="container mx-auto px-4 py-24">
         
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Order Ahead */}
