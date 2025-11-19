@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import orderAheadImage from "@/assets/order-ahead.jpg";
 
 export const OrderSection = () => {
@@ -17,10 +18,20 @@ export const OrderSection = () => {
           <source src="/order-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
-        <div className="relative h-full flex items-center justify-center">
+        <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4">
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-primary-foreground">
             Order Now
           </h2>
+          <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer">
+            <Button 
+              variant="pebble" 
+              size="lg" 
+              className="text-base font-semibold tracking-wide group"
+            >
+              ORDER NOW
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </a>
         </div>
       </div>
 
