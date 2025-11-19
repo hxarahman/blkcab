@@ -19,7 +19,7 @@ export const OrderSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
         <div className="relative h-full flex items-center justify-center">
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-primary-foreground">
-            Order Now
+            Coming Soon
           </h2>
         </div>
       </div>
@@ -36,10 +36,10 @@ export const OrderSection = () => {
           </div>
           <div className="text-center space-y-6">
             <h3 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Order Ahead
+              Online Ordering Coming Soon
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Make frictionless ordering even easier through the BLK CAB® app. Swing by, grab your drink, and go. Easy. Find your nearest location and experience coffee culture at its finest.
+              We're working hard to bring you a seamless online ordering experience. In the meantime, visit us at our location to enjoy BLK CAB® coffee and culture. Explore our menu and find us below.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/menu">

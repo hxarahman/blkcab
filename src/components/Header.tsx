@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { EmailCaptureDialog } from "./EmailCaptureDialog";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [emailDialogOpen, setEmailDialogOpen] = useState(false);
 
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -27,11 +29,13 @@ export const Header = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex">
-            <Button variant="cta">
-              ORDER NOW
-            </Button>
-          </a>
+          <Button 
+            variant="cta" 
+            className="hidden md:inline-flex"
+            onClick={() => setEmailDialogOpen(true)}
+          >
+            ORDER NOW
+          </Button>
           <button
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -66,14 +70,24 @@ export const Header = () => {
             >
               ABOUT
             </Link>
-            <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer" className="w-full">
-              <Button variant="cta" className="w-full">
-                ORDER NOW
-              </Button>
-            </a>
+            <Button 
+              variant="cta" 
+              className="w-full"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setEmailDialogOpen(true);
+              }}
+            >
+              ORDER NOW
+            </Button>
           </div>
         </div>
       )}
+
+      <EmailCaptureDialog 
+        open={emailDialogOpen} 
+        onOpenChange={setEmailDialogOpen} 
+      />
     </header>
   );
 };
