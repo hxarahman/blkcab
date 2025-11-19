@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 import orderAheadImage from "@/assets/order-ahead.jpg";
 
 export const OrderSection = () => {
@@ -41,14 +42,18 @@ export const OrderSection = () => {
               Make frictionless ordering even easier through the BLK CAB® app. Swing by, grab your drink, and go. Easy. Find your nearest location and experience coffee culture at its finest.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="cta" size="lg" className="group">
-                EXPLORE MENU
-                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-              </Button>
-              <Button variant="cta" size="lg" className="group">
-                FIND LOCATIONS
-                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-              </Button>
+              <Link to="/menu">
+                <Button variant="cta" size="lg" className="group">
+                  EXPLORE MENU
+                  <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </Button>
+              </Link>
+              <Link to="/locations">
+                <Button variant="cta" size="lg" className="group">
+                  FIND LOCATIONS
+                  <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
