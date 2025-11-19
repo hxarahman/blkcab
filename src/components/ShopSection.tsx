@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import merchHero from "@/assets/merch-hero.jpg";
 import merchTanks from "@/assets/merch-tanks.jpg";
 import merchUmbrella from "@/assets/merch-umbrella.jpg";
 import merchFlask from "@/assets/merch-flask.jpg";
@@ -18,6 +19,15 @@ export const ShopSection = () => {
         <div className="max-w-7xl mx-auto space-y-20">
           {/* Community Merch */}
           <div className="space-y-8">
+            {/* Hero Image */}
+            <div className="w-full aspect-[16/9] overflow-hidden rounded-lg">
+              <img
+                src={merchHero}
+                alt="BLK CAB Community Merch - I'M BLK CAB (Coffee&People)"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
             <div className="text-center">
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 Community Merch
