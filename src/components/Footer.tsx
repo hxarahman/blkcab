@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logoWhite from "@/assets/logo-white.jpeg";
+import stickerBadge from "@/assets/sticker-badge.png";
 
 export const Footer = () => {
   return (
@@ -7,7 +8,8 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 max-w-6xl mx-auto">
           <div className="space-y-4">
-            <img src={logoWhite} alt="BLK CAB" className="h-12 w-auto" />
+            <img src={logoWhite} alt="BLK CAB" className="h-12 w-auto mb-3" />
+            <img src={stickerBadge} alt="BC Coffee&People" className="h-10 w-auto" />
             <p className="text-sm text-primary-foreground/80">
               Black Cab Coffee and People
             </p>
