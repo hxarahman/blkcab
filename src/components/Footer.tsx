@@ -11,7 +11,7 @@ export const Footer = () => {
             <img src={logoWhite} alt="BLK CAB" className="h-12 w-auto mb-3" />
             <img src={stickerBadge} alt="BC Coffee&People" className="h-10 w-auto" />
             <p className="text-sm text-primary-foreground/80">
-              Black Cab Coffee and People
+              BLK CAB® (Coffee&People)
             </p>
           </div>
           
@@ -55,7 +55,7 @@ export const Footer = () => {
         
         <div className="mt-12 pt-8 border-t border-primary-foreground/20 text-center">
           <p className="text-sm text-primary-foreground/60">
-            © 2025 BLK Cab. All rights reserved.
+            © 2025 BLK CAB®. All rights reserved.
           </p>
         </div>
       </div>
