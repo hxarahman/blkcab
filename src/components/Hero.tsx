@@ -1,16 +1,19 @@
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/brand-cup.jpg";
 
 export const Hero = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden flex items-center">
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
-      </div>
+        <source src="/hero-video.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
       
       <div className="relative w-full py-32 px-4">
         <div className="max-w-7xl mx-auto">
