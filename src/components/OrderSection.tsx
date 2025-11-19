@@ -26,7 +26,7 @@ export const OrderSection = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Make frictionless ordering even easier through the BLK CAB® app. Swing by, grab your drink, and go. Easy.
             </p>
-            <Button variant="default" size="lg" className="group">
+            <Button variant="cta" size="lg" className="group">
               EXPLORE MENU
               <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
             </Button>
@@ -47,7 +47,7 @@ export const OrderSection = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Wherever you go, there we are. Find your nearest BLK CAB® location and experience coffee culture at its finest.
             </p>
-            <Button variant="default" size="lg" className="group">
+            <Button variant="cta" size="lg" className="group">
               FIND LOCATIONS
               <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
             </Button>

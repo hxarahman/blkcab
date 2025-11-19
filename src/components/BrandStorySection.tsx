@@ -11,7 +11,7 @@ export const BrandStorySection = () => {
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Built for & around (People & Coffee). Our identity is familiar, fresh, and far from ordinary.
           </p>
-          <Button variant="default" size="lg" className="group">
+          <Button variant="cta" size="lg" className="group">
             LEARN MORE
             <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
           </Button>
