@@ -18,7 +18,7 @@ export const MenuSection = () => {
               Crafted for You
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Every cup at BLK Cab is crafted with precision and care. From our signature espresso to seasonal specialties, we bring you the finest coffee experience.
+              Every cup at BLK CAB® is crafted with precision and care. From our signature espresso to seasonal specialties, we bring you the finest coffee experience built for and around people.
             </p>
             <Button variant="default" size="lg" className="group">
               EXPLORE MENU

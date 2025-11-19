@@ -11,7 +11,7 @@ export const LocationsSection = () => {
               Visit Us
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Wherever you go, there we are. Find your nearest BLK Cab location and experience coffee culture at its finest.
+              Wherever you go, there we are. Find your nearest BLK CAB® location and experience coffee culture at its finest. Mind the Cab.
             </p>
             <Button variant="default" size="lg" className="group">
               FIND LOCATIONS

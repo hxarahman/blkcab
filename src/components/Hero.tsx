@@ -14,11 +14,14 @@ export const Hero = () => {
       
       <div className="relative h-full flex items-center justify-center px-4">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-primary-foreground">
-            WINTER 2025
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-primary-foreground mb-4">
+            Mind the Cab, Est (2017)
           </h1>
+          <p className="text-2xl md:text-3xl text-primary-foreground font-light tracking-wide mb-2">
+            (People & Coffee)
+          </p>
           <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed">
-            The season changes, but your coffee doesn't. Our Winter 2025 collection brings you warmth in every sip.
+            Built for & around (People & Coffee)
           </p>
           <Button 
             variant="hero" 
