@@ -27,7 +27,7 @@ export const Header = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button variant="outline" className="hidden md:inline-flex">
+          <Button variant="cta" className="hidden md:inline-flex">
             ORDER NOW
           </Button>
           <button
@@ -64,7 +64,7 @@ export const Header = () => {
             >
               ABOUT
             </Link>
-            <Button variant="outline" className="w-full">
+            <Button variant="cta" className="w-full">
               ORDER NOW
             </Button>
           </div>
