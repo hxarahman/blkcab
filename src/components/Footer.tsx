@@ -33,14 +33,21 @@ export const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-sm tracking-wide">CONNECT</h4>
             <div className="flex flex-col gap-2">
-              <a href="#" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+              <a 
+                href="https://www.instagram.com/blkcab.london" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
                 Instagram
               </a>
-              <a href="#" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                Twitter
-              </a>
-              <a href="#" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                Facebook
+              <a 
+                href="https://www.tiktok.com/@blkcablondon" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                TikTok
               </a>
             </div>
           </div>
