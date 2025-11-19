@@ -11,10 +11,10 @@ export const ShopSection = () => {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-4">
-          Shop
+          Shop - Coming Soon
         </h2>
         <p className="text-lg text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-          Bring BLK CAB® everywhere.
+          We're working on bringing you exclusive BLK CAB® merchandise, coffee, and more. Stay tuned!
         </p>
         
         <div className="max-w-7xl mx-auto space-y-20">
@@ -62,9 +62,8 @@ export const ShopSection = () => {
             </div>
             
             <div className="text-center">
-              <Button variant="cta" size="lg" className="group">
-                SHOP MERCH
-                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+              <Button variant="cta" size="lg" className="group" disabled>
+                COMING SOON
               </Button>
             </div>
           </div>
@@ -85,9 +84,8 @@ export const ShopSection = () => {
             </div>
             
             <div className="text-center">
-              <Button variant="cta" size="lg" className="group">
-                SHOP STARTER KIT
-                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+              <Button variant="cta" size="lg" className="group" disabled>
+                COMING SOON
               </Button>
             </div>
           </div>
@@ -108,9 +106,8 @@ export const ShopSection = () => {
             </div>
             
             <div className="text-center">
-              <Button variant="cta" size="lg" className="group">
-                SHOP COFFEE
-                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+              <Button variant="cta" size="lg" className="group" disabled>
+                COMING SOON
               </Button>
             </div>
           </div>
@@ -135,9 +132,8 @@ export const ShopSection = () => {
             </div>
             
             <div className="text-center">
-              <Button variant="cta" size="lg" className="group">
-                SHOP MATCHA
-                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+              <Button variant="cta" size="lg" className="group" disabled>
+                COMING SOON
               </Button>
             </div>
           </div>
