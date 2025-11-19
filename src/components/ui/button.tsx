@@ -17,6 +17,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         cta: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full font-semibold tracking-wide",
         hero: "bg-transparent backdrop-blur-sm border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full font-semibold tracking-wide",
+        pebble: "bg-transparent backdrop-blur-sm border-2 border-white text-white hover:bg-white/10 rounded-full font-semibold tracking-wide transition-all",
       },
       size: {
         default: "h-10 px-4 py-2",
