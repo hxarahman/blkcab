@@ -124,11 +124,15 @@ export const ShopSection = () => {
             </div>
             
             <div className="aspect-[16/9] overflow-hidden rounded-lg max-w-4xl mx-auto">
-              <img
-                src={shopMatcha}
-                alt="BLK CAB Matcha containers"
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
-              />
+              >
+                <source src="/shop-hero.mp4" type="video/mp4" />
+              </video>
             </div>
             
             <div className="text-center">
