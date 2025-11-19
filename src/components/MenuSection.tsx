@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import coffeeMenuImage from "@/assets/coffee-menu.jpg";
+import coffeeMenuImage from "@/assets/brand-drink.jpg";
 
 export const MenuSection = () => {
   return (
