@@ -10,7 +10,7 @@ export const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <span className="text-xl md:text-2xl font-bold tracking-tight">BLK CAB®</span>
+          <span className="text-xl md:text-2xl font-bold tracking-tight">BLK CAB® (Coffee&People)</span>
         </Link>
 
         {/* Desktop Navigation */}
