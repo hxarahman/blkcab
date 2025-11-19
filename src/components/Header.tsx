@@ -27,9 +27,11 @@ export const Header = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button variant="cta" className="hidden md:inline-flex">
-            ORDER NOW
-          </Button>
+          <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex">
+            <Button variant="cta">
+              ORDER NOW
+            </Button>
+          </a>
           <button
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -64,9 +66,11 @@ export const Header = () => {
             >
               ABOUT
             </Link>
-            <Button variant="cta" className="w-full">
-              ORDER NOW
-            </Button>
+            <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer" className="w-full">
+              <Button variant="cta" className="w-full">
+                ORDER NOW
+              </Button>
+            </a>
           </div>
         </div>
       )}
