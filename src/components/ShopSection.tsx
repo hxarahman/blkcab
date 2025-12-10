@@ -9,12 +9,12 @@ import starterKit from "@/assets/starter-kit.jpg";
 
 export const ShopSection = () => {
   return (
-    <section className="py-12 bg-background">
+    <section className="py-8 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-3">
           Shop - Coming Soon
         </h2>
-        <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground text-center mb-6 max-w-2xl mx-auto">
           We're working on bringing you exclusive BLK CAB® merchandise, coffee, and more. Stay tuned!
         </p>
         
