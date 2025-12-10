@@ -19,7 +19,7 @@ export const SoundsSection = () => {
         
         <div className="relative h-full flex items-center justify-center">
           <div className="max-w-4xl mx-auto text-center space-y-4 px-4">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary-foreground">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary-foreground">
               BLK CAB® Sounds
             </h2>
             

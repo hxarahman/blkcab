@@ -19,7 +19,7 @@ export const OrderSection = () => {
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
         <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary-foreground">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary-foreground">
             Order Now
           </h2>
           <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer">
@@ -46,7 +46,7 @@ export const OrderSection = () => {
             />
           </div>
           <div className="text-center space-y-4">
-            <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
               Order Ahead
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">

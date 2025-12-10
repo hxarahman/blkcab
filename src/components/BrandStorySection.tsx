@@ -5,7 +5,7 @@ export const BrandStorySection = () => {
     <section className="py-12 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
             Mind the Cab, Est (2017)
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
