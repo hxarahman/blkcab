@@ -2,9 +2,9 @@ import { Button } from "./ui/button";
 
 export const BrandStorySection = () => {
   return (
-    <section className="py-24 bg-secondary/30">
+    <section className="py-12 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
             Mind the Cab, Est (2017)
           </h2>

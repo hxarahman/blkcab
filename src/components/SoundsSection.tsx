@@ -5,7 +5,7 @@ export const SoundsSection = () => {
   return (
     <section className="bg-background">
       {/* Hero Video */}
-      <div className="relative h-[70vh] w-full overflow-hidden">
+      <div className="relative h-[60vh] w-full overflow-hidden">
         <video
           autoPlay
           loop
@@ -18,7 +18,7 @@ export const SoundsSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
         
         <div className="relative h-full flex items-center justify-center">
-          <div className="max-w-4xl mx-auto text-center space-y-8 px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-5 px-4">
             <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-primary-foreground">
               BLK CAB® Sounds
             </h2>

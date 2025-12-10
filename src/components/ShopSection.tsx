@@ -8,18 +8,18 @@ import shopMatcha from "@/assets/shop-matcha.jpg";
 
 export const ShopSection = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-3">
           Shop - Coming Soon
         </h2>
-        <p className="text-lg text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
           We're working on bringing you exclusive BLK CAB® merchandise, coffee, and more. Stay tuned!
         </p>
         
-        <div className="max-w-7xl mx-auto space-y-20">
+        <div className="max-w-7xl mx-auto space-y-12">
           {/* Community Merch */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Hero Image */}
             <div className="w-full aspect-[16/9] overflow-hidden rounded-lg">
               <img
@@ -30,10 +30,10 @@ export const ShopSection = () => {
             </div>
             
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
                 Community Merch
               </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Represent the culture. Exclusive apparel and accessories designed for the BLK CAB® community.
               </p>
             </div>
@@ -69,12 +69,12 @@ export const ShopSection = () => {
           </div>
 
           {/* BLK CAB Starter Kit */}
-          <div className="space-y-8">
+          <div className="space-y-5">
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
                 BLK CAB Starter Kit
               </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Everything you need to bring the BLK CAB® experience home.
               </p>
             </div>
@@ -91,12 +91,12 @@ export const ShopSection = () => {
           </div>
 
           {/* Shop Coffee */}
-          <div className="space-y-8">
+          <div className="space-y-5">
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
                 Shop Coffee
               </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Premium coffee blends sourced and roasted for the BLK CAB® community.
               </p>
             </div>
@@ -113,12 +113,12 @@ export const ShopSection = () => {
           </div>
 
           {/* Shop Matcha */}
-          <div className="space-y-8">
+          <div className="space-y-5">
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
                 Shop Matcha
               </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Handcrafted in London for BLK CAB® Coffee & People.
               </p>
             </div>
