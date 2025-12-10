@@ -18,7 +18,7 @@ export const Hero = () => {
       <div className="relative w-full py-32 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl space-y-6" style={{ marginTop: '30%' }}>
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-primary-foreground">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-primary-foreground">
               WINTER 2025
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed">
