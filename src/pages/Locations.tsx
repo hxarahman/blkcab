@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Locations = () => {
@@ -16,7 +16,7 @@ const Locations = () => {
                 Visit Us
               </h1>
               <p className="text-xl md:text-2xl font-light">
-                Mind the Cab - Find your nearest location
+                Mind the Cab - Find your nearest BLK CAB® location
               </p>
             </div>
           </div>
@@ -26,7 +26,8 @@ const Locations = () => {
         <section className="py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-12 items-start">
+              {/* Current Location - St Christopher's Place */}
+              <div className="grid md:grid-cols-2 gap-12 items-start mb-24">
                 {/* Location Info */}
                 <div className="space-y-8">
                   <div>
@@ -101,7 +102,7 @@ const Locations = () => {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="BLK CAB Location Map"
+                      title="BLK CAB® Location Map"
                     />
                   </div>
                   <a
@@ -113,6 +114,73 @@ const Locations = () => {
                     <MapPin className="h-4 w-4" />
                     Open in Google Maps
                   </a>
+                </div>
+              </div>
+
+              {/* Coming Soon Locations */}
+              <div className="space-y-8">
+                <h2 className="text-3xl font-bold tracking-tight text-center mb-8">
+                  Coming Soon
+                </h2>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Little Portland Street */}
+                  <div className="p-8 bg-secondary/30 border border-border rounded-lg">
+                    <div className="space-y-4">
+                      <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
+                        Coming Soon
+                      </div>
+                      <h3 className="text-2xl font-bold tracking-tight">
+                        12 Little Portland Street
+                      </h3>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-5 w-5 text-accent mt-0.5" />
+                        <p className="text-muted-foreground">
+                          12 Little Portland Street<br />
+                          London<br />
+                          United Kingdom
+                        </p>
+                      </div>
+                      <a
+                        href="https://maps.app.goo.gl/ZrFRNai5L54BVy9AA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-accent hover:underline text-sm"
+                      >
+                        <MapPin className="h-4 w-4" />
+                        View on Google Maps
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Earlham Street */}
+                  <div className="p-8 bg-secondary/30 border border-border rounded-lg">
+                    <div className="space-y-4">
+                      <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
+                        Coming Soon
+                      </div>
+                      <h3 className="text-2xl font-bold tracking-tight">
+                        18 Earlham Street
+                      </h3>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-5 w-5 text-accent mt-0.5" />
+                        <p className="text-muted-foreground">
+                          18 Earlham Street<br />
+                          London<br />
+                          United Kingdom
+                        </p>
+                      </div>
+                      <a
+                        href="https://maps.app.goo.gl/rLF8U3ttRzqZpUXM7"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-accent hover:underline text-sm"
+                      >
+                        <MapPin className="h-4 w-4" />
+                        View on Google Maps
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 

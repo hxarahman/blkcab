@@ -25,7 +25,7 @@ export const ShopSection = () => {
             <div className="w-full aspect-[16/9] overflow-hidden rounded-lg">
               <img
                 src={merchHero}
-                alt="BLK CAB Community Merch - I'M BLK CAB (Coffee&People)"
+                alt="BLK CAB® Community Merch - I'M BLK CAB® (Coffee&People)"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -42,22 +42,22 @@ export const ShopSection = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <img
                 src={merchTanks}
-                alt="BLK CAB Tank Tops"
+                alt="BLK CAB® Tank Tops"
                 className="w-full h-auto object-cover rounded-lg"
               />
               <img
                 src={merchUmbrella}
-                alt="BLK CAB Umbrella & Wool Scarf"
+                alt="BLK CAB® Umbrella & Wool Scarf"
                 className="w-full h-auto object-cover rounded-lg"
               />
               <img
                 src={merchFlask}
-                alt="BLK CAB Stainless Flask"
+                alt="BLK CAB® Stainless Flask"
                 className="w-full h-auto object-cover rounded-lg"
               />
               <img
                 src={merchTote}
-                alt="BLK CAB Tote Bag & Keychain"
+                alt="BLK CAB® Tote Bag & Keychain"
                 className="w-full h-auto object-cover rounded-lg"
               />
             </div>
@@ -73,7 +73,7 @@ export const ShopSection = () => {
           <div className="space-y-5">
             <div className="text-center">
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
-                BLK CAB Starter Kit
+                BLK CAB® Starter Kit
               </h3>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Everything you need to bring the BLK CAB® experience home.
@@ -83,31 +83,9 @@ export const ShopSection = () => {
             <div className="aspect-[16/9] overflow-hidden rounded-lg max-w-4xl mx-auto">
               <img
                 src={starterKit}
-                alt="BLK CAB Starter Kit - Matcha tins"
+                alt="BLK CAB® Starter Kit - Matcha tins"
                 className="w-full h-full object-cover"
               />
-            </div>
-            
-            <div className="text-center">
-              <Button variant="cta" size="lg" className="group" disabled>
-                COMING SOON
-              </Button>
-            </div>
-          </div>
-
-          {/* Shop Coffee */}
-          <div className="space-y-5">
-            <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
-                Shop Coffee
-              </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-                Premium coffee blends sourced and roasted for the BLK CAB® community.
-              </p>
-            </div>
-            
-            <div className="aspect-[16/9] bg-secondary/30 rounded-lg flex items-center justify-center max-w-4xl mx-auto">
-              <span className="text-6xl font-bold text-muted-foreground/20">COFFEE</span>
             </div>
             
             <div className="text-center">
