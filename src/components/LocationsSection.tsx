@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import locationImage from "@/assets/brand-memories.jpg";
+import locationImage from "@/assets/order-ahead.jpg";
 
 export const LocationsSection = () => {
   return (
