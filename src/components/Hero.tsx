@@ -27,8 +27,8 @@ export const Hero = () => {
             <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer">
               <Button 
                 variant="pebble" 
-                size="lg" 
-                className="text-base font-semibold tracking-wide group"
+                size="default" 
+                className="text-sm font-semibold tracking-wide group"
               >
                 ORDER NOW
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
