@@ -14,7 +14,7 @@ export const MenuSection = () => {
             />
           </div>
           <div className="order-1 md:order-2 space-y-4">
-            <h2 className="text-5xl font-bold tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
               Crafted for You
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
