@@ -5,6 +5,7 @@ import merchUmbrella from "@/assets/merch-umbrella.jpg";
 import merchFlask from "@/assets/merch-flask.jpg";
 import merchTote from "@/assets/merch-tote.jpg";
 import shopMatcha from "@/assets/shop-matcha.jpg";
+import starterKit from "@/assets/starter-kit.jpg";
 
 export const ShopSection = () => {
   return (
@@ -79,8 +80,12 @@ export const ShopSection = () => {
               </p>
             </div>
             
-            <div className="aspect-[16/9] bg-secondary/30 rounded-lg flex items-center justify-center max-w-4xl mx-auto">
-              <span className="text-6xl font-bold text-muted-foreground/20">STARTER KIT</span>
+            <div className="aspect-[16/9] overflow-hidden rounded-lg max-w-4xl mx-auto">
+              <img
+                src={starterKit}
+                alt="BLK CAB Starter Kit - Matcha tins"
+                className="w-full h-full object-cover"
+              />
             </div>
             
             <div className="text-center">
