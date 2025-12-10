@@ -3,9 +3,9 @@ import coffeeMenuImage from "@/assets/brand-drink.jpg";
 
 export const MenuSection = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           <div className="order-2 md:order-1">
             <img
               src={coffeeMenuImage}
@@ -13,7 +13,7 @@ export const MenuSection = () => {
               className="w-full h-[500px] object-cover rounded-lg shadow-2xl"
             />
           </div>
-          <div className="order-1 md:order-2 space-y-6">
+          <div className="order-1 md:order-2 space-y-4">
             <h2 className="text-5xl font-bold tracking-tight">
               Crafted for You
             </h2>

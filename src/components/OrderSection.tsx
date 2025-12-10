@@ -36,8 +36,8 @@ export const OrderSection = () => {
       </div>
 
       {/* Order Ahead Section */}
-      <div className="container mx-auto px-4 py-24">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto space-y-6">
           <div className="aspect-[4/3] overflow-hidden rounded-lg">
             <img
               src={orderAheadImage}
@@ -45,7 +45,7 @@ export const OrderSection = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-4">
             <h3 className="text-4xl md:text-5xl font-bold tracking-tight">
               Order Ahead
             </h3>

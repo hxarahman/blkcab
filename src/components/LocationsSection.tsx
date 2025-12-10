@@ -3,10 +3,10 @@ import locationImage from "@/assets/brand-memories.jpg";
 
 export const LocationsSection = () => {
   return (
-    <section className="py-24 bg-secondary/30">
+    <section className="py-12 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+          <div className="space-y-4">
             <h2 className="text-5xl font-bold tracking-tight">
               Visit Us
             </h2>
