@@ -46,7 +46,7 @@ export const OrderSection = () => {
             />
           </div>
           <div className="text-center space-y-4">
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
               Order Ahead
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
