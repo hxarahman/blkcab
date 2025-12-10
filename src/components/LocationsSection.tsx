@@ -7,7 +7,7 @@ export const LocationsSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           <div className="space-y-4">
-            <h2 className="text-5xl font-bold tracking-tight">
+            <h2 className="text-3xl font-bold tracking-tight">
               Visit Us
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
