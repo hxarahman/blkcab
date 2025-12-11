@@ -13,15 +13,12 @@ export const OrderSection = () => {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover scale-125"
         >
           <source src="/order-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
-        <div className="relative h-full flex flex-col items-center justify-center gap-6 px-4">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary-foreground">
-            Order Now
-          </h2>
+        <div className="relative h-full flex flex-col items-center justify-center px-4">
           <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer">
             <Button 
               variant="pebble" 
