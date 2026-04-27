@@ -12,8 +12,22 @@ import "./../MindTheCab.css";
 
 const MindTheCab = () => {
   const { settings, setCabScale, setHaptic, reset: resetSettings } = useSettings();
-  const { state, items, hazards, player, collectFx, powerFx, start, reset, setDir, goTutorial, goStart, rank, timerTest, testElapsed } =
-    useGameEngine({ haptics: settings.haptics });
+  const {
+    state,
+    items,
+    hazards,
+    player,
+    collectFx,
+    powerFx,
+    start,
+    reset,
+    setDir,
+    goTutorial,
+    goStart,
+    rank,
+    timerTest,
+    testElapsed,
+  } = useGameEngine({ haptics: settings.haptics });
   const surfaceRef = useRef<HTMLDivElement>(null);
   const [activePowerBubble, setActivePowerBubble] = useState<{ id: number; mode: string } | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -29,12 +43,15 @@ const MindTheCab = () => {
   const isLive = state.phase === "playing" || state.phase === "ready";
 
   return (
-    <div className="mtc notranslate" id="mtc" translate="no">
+    <div className="mtc dark" id="mtc">
       <main
         ref={surfaceRef}
         className="fixed inset-0 mx-auto w-full max-w-lg bg-background flex flex-col overflow-hidden no-tap-highlight"
-        translate="no"
-        style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)", touchAction: "none" }}
+        style={{
+          paddingTop: "env(safe-area-inset-top)",
+          paddingBottom: "env(safe-area-inset-bottom)",
+          touchAction: "none",
+        }}
       >
         {/* Marquee strip when not playing */}
         {!isLive && (
@@ -54,7 +71,13 @@ const MindTheCab = () => {
 
         {isLive && (
           <>
-            <HUD state={state} rank={rank} onOpenSettings={() => setSettingsOpen(true)} timerTest={timerTest} testElapsed={testElapsed} />
+            <HUD
+              state={state}
+              rank={rank}
+              onOpenSettings={() => setSettingsOpen(true)}
+              timerTest={timerTest}
+              testElapsed={testElapsed}
+            />
             <Board
               player={player}
               hazards={hazards}
@@ -88,14 +111,15 @@ const MindTheCab = () => {
                 className="pointer-events-none absolute left-1/2 top-[60%] z-30 animate-fly-up"
               >
                 <div
-                  className={`px-3 py-1 rounded-sm font-display font-bold tracking-[0.18em] text-xs shadow-olive border whitespace-nowrap ${activePowerBubble.mode === "matcha_hypnosis"
+                  className={`px-3 py-1 rounded-sm font-display font-bold tracking-[0.18em] text-xs shadow-olive border whitespace-nowrap ${
+                    activePowerBubble.mode === "matcha_hypnosis"
                       ? "bg-matcha text-[hsl(0_0%_6%)] border-matcha"
                       : activePowerBubble.mode === "no_compromise"
                         ? "bg-orange-sticker text-[hsl(0_0%_6%)] border-orange-sticker"
                         : activePowerBubble.mode === "cabbie_stories"
                           ? "bg-bc-blue text-[hsl(0_0%_6%)] border-bc-blue"
                           : "bg-cream text-[hsl(0_0%_6%)] border-cream"
-                    }`}
+                  }`}
                 >
                   ▶ {POWER_OVERLAY[activePowerBubble.mode as Exclude<typeof activePowerBubble.mode, "none">]}
                 </div>
@@ -110,7 +134,10 @@ const MindTheCab = () => {
             rank={rank}
             hasArtifact={state.collectedBcArtifact}
             onReplay={start}
-            onHome={() => { reset(); goStart(); }}
+            onHome={() => {
+              reset();
+              goStart();
+            }}
           />
         )}
 
