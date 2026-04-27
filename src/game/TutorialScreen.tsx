@@ -3,7 +3,7 @@ import { ItemSprite } from "./ItemSprite";
 import { HazardSprite } from "./HazardSprite";
 
 const Chip = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-primary/60 border border-border text-[10px] font-mono-brand uppercase tracking-wider whitespace-nowrap">
+  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-dark/60 border border-border text-[10px] font-mono-brand uppercase tracking-wider whitespace-nowrap">
     {children}
   </span>
 );
