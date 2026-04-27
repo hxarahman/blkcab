@@ -10,6 +10,13 @@ import { SettingsPanel } from "@/game/SettingsPanel";
 import { useSettings } from "@/game/useSettings";
 import "./../MindTheCab.css";
 
+const directionalKeys: Record<string, "up" | "down" | "left" | "right"> = {
+  ArrowUp: "up",
+  ArrowDown: "down",
+  ArrowLeft: "left",
+  ArrowRight: "right",
+};
+
 const MindTheCab = () => {
   const { settings, setCabScale, setHaptic, reset: resetSettings } = useSettings();
   const {
@@ -42,11 +49,34 @@ const MindTheCab = () => {
 
   const isLive = state.phase === "playing" || state.phase === "ready";
 
+  useEffect(() => {
+    if (isLive) surfaceRef.current?.focus({ preventScroll: true });
+  }, [isLive]);
+
+  const blockGameBrowserInteraction = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+  };
+
   return (
     <div className="mtc dark" id="mtc">
       <main
         ref={surfaceRef}
-        className="fixed inset-0 mx-auto w-full max-w-lg bg-background flex flex-col overflow-hidden no-tap-highlight"
+        tabIndex={0}
+        aria-label="MindTheCab game area"
+        onKeyDown={(event) => {
+          if (!isLive) return;
+          const dir = directionalKeys[event.key];
+          if (!dir) return;
+          event.preventDefault();
+          setDir(dir);
+        }}
+        onPointerDown={() => surfaceRef.current?.focus({ preventScroll: true })}
+        onContextMenu={blockGameBrowserInteraction}
+        onDoubleClick={blockGameBrowserInteraction}
+        onDragStart={blockGameBrowserInteraction}
+        onSelect={blockGameBrowserInteraction}
+        onSelectCapture={blockGameBrowserInteraction}
+        className="mtc-input-layer fixed inset-0 mx-auto w-full max-w-lg bg-background flex flex-col overflow-hidden no-tap-highlight outline-none"
         style={{
           paddingTop: "env(safe-area-inset-top)",
           paddingBottom: "env(safe-area-inset-bottom)",
