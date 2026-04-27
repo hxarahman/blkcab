@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Brand Fonts - Acid Grotesk & Lastik */
+/* BLK CAB brand fonts — Acid Grotesk (body) + Lastik (display/accent) */
 @font-face {
   font-family: 'Acid Grotesk';
   src: url('/fonts/AcidGrotesk-Regular.otf') format('opentype');
@@ -45,6 +46,10 @@
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
+*/
+/* MIND THE CAB design system
+   Dark, sharp, premium, London street-culture, editorial.
+   All colors HSL.
 */
 
 @layer base {
