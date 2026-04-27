@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* BLK CAB brand fonts — Acid Grotesk (body) + Lastik (display/accent) */
+@font-face {
+  font-family: 'Acid Grotesk';
+  src: url('/fonts/AcidGrotesk-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Acid Grotesk';
+  src: url('/fonts/AcidGrotesk-Normal.otf') format('opentype');
+  font-weight: 450;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Acid Grotesk';
+  src: url('/fonts/AcidGrotesk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Acid Grotesk';
+  src: url('/fonts/AcidGrotesk-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lastik';
+  src: url('/fonts/Lastik-Free.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* MIND THE CAB design system
+   Dark, sharp, premium, London street-culture, editorial.
+   All colors HSL.
+*/
+
+
 @layer base {
   :root {
     /* Core surfaces */
