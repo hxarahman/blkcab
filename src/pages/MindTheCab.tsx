@@ -8,7 +8,7 @@ import { TutorialScreen } from "@/game/TutorialScreen";
 import { ResultScreen } from "@/game/ResultScreen";
 import { SettingsPanel } from "@/game/SettingsPanel";
 import { useSettings } from "@/game/useSettings";
-import "MindTheCab.css";
+import "./MindTheCab.css";
 
 const MindTheCab = () => {
   const { settings, setCabScale, setHaptic, reset: resetSettings } = useSettings();
