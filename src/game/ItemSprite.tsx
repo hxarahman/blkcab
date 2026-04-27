@@ -1,6 +1,6 @@
 import { ItemKind } from "@/game/types";
 import cupMatcha from "@/assets/game/cup-matcha.png";
-import cupCoffee from "@/assetsgame//cup-coffee.png";
+import cupCoffee from "@/assets/game/cup-coffee.png";
 import bcStack from "@/assets/game/sticker-bc-stack.png";
 import est2017 from "@/assets/game/sticker-est2017.png";
 import hailCoffee from "@/assets/game/sticker-hail-coffee.png";
