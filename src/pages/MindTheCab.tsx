@@ -29,10 +29,11 @@ const MindTheCab = () => {
   const isLive = state.phase === "playing" || state.phase === "ready";
 
   return (
-    <div className="mtc" id="mtc">
+    <div className="mtc notranslate" id="mtc" translate="no">
       <main
         ref={surfaceRef}
         className="fixed inset-0 mx-auto w-full max-w-lg bg-background flex flex-col overflow-hidden no-tap-highlight"
+        translate="no"
         style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)", touchAction: "none" }}
       >
         {/* Marquee strip when not playing */}
