@@ -5,7 +5,6 @@ import { ShopSection } from "@/components/ShopSection";
 import { SoundsSection } from "@/components/SoundsSection";
 import { OrderSection } from "@/components/OrderSection";
 import { Footer } from "@/components/Footer";
-import "./../index.css";
 
 const Index = () => {
   return (
