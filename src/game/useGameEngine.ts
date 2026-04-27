@@ -635,14 +635,15 @@ export function useGameEngine(options?: EngineOptions) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.phase]);
 
-  // Keyboard
+  // Keyboard — arrow keys only. The game surface owns focus so browser behavior
+  // outside the game remains normal.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (state.phase !== "playing" && state.phase !== "ready") return;
-      if (e.key === "ArrowUp" || e.key === "w") setDir("up");
-      if (e.key === "ArrowDown" || e.key === "s") setDir("down");
-      if (e.key === "ArrowLeft" || e.key === "a") setDir("left");
-      if (e.key === "ArrowRight" || e.key === "d") setDir("right");
+      if (e.key === "ArrowUp") { e.preventDefault(); setDir("up"); }
+      if (e.key === "ArrowDown") { e.preventDefault(); setDir("down"); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); setDir("left"); }
+      if (e.key === "ArrowRight") { e.preventDefault(); setDir("right"); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
