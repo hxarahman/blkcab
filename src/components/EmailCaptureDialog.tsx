@@ -34,11 +34,10 @@ export const EmailCaptureDialog = ({ open, onOpenChange }: EmailCaptureDialogPro
     setIsSubmitting(true);
 
     try {
-      const validatedData = emailSchema.parse({ email });
+      emailSchema.parse({ email });
       
       // For now, just show success message
       // TODO: Store email when backend is enabled
-      console.log("Email captured:", validatedData.email);
       
       toast({
         title: "You're on the list!",
