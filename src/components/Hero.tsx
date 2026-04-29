@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[72svh] w-full overflow-hidden bg-primary md:min-h-screen md:flex md:items-center">
+    <section className="relative min-h-[72svh] w-full overflow-hidden bg-secondary md:min-h-screen md:flex md:items-center">
       <video
         autoPlay
         loop
@@ -13,7 +13,7 @@ export const Hero = () => {
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/30 to-primary/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/45 via-primary/20 to-primary/60" />
       
       <div className="absolute inset-0 flex items-end px-4 pb-10 md:relative md:block md:w-full md:py-32 md:pb-32">
         <div className="max-w-7xl mx-auto">
