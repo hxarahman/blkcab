@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import blkcabLogo from "@/assets/blkcablogo.png";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ export const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <span className="text-xl md:text-2xl font-bold tracking-tight">BLK CAB® (Coffee&People)</span>
+          <img src={blkcabLogo} alt="BLK CAB®" className="h-8 md:h-10 w-auto object-contain" />
         </Link>
 
         {/* Desktop Navigation */}
