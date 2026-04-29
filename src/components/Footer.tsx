@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoWhite from "@/assets/blkcablogo-dark.png";
+import logoWhite from "@/assets/logo-white.jpeg";
 import stickerBadge from "@/assets/sticker-badge.png";
 
 export const Footer = () => {
