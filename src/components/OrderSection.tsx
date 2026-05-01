@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import orderAheadImage from "@/assets/order-ahead.jpg";
+import bcStackSticker from "@/assets/bc-stack-sticker.png";
 
 export const OrderSection = () => {
   return (
@@ -18,6 +19,11 @@ export const OrderSection = () => {
           <source src="/order-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
+        <img
+          src={bcStackSticker}
+          alt="BC Coffee & People / Mind the Cab / Cabbie Stories"
+          className="absolute top-6 left-4 md:top-10 md:left-10 w-40 md:w-64 -rotate-[30deg] origin-top-left drop-shadow-xl pointer-events-none select-none"
+        />
         <div className="relative h-full flex flex-col items-center justify-center px-4">
           <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer">
             <Button 
