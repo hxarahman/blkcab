@@ -13,7 +13,7 @@ export const OrderSection = () => {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover scale-150"
+          className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/order-hero.mp4" type="video/mp4" />
         </video>
