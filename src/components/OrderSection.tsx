@@ -22,7 +22,7 @@ export const OrderSection = () => {
         <img
           src={bcStackSticker}
           alt="BC Coffee & People / Mind the Cab / Cabbie Stories"
-          className="absolute bottom-6 left-4 md:bottom-10 md:left-10 w-32 md:w-48 -rotate-[30deg] origin-bottom-left drop-shadow-xl pointer-events-none select-none z-10"
+          className="absolute bottom-10 left-10 md:bottom-14 md:left-20 w-32 md:w-48 -rotate-[30deg] origin-bottom-left drop-shadow-xl pointer-events-none select-none z-10"
         />
         <div className="relative h-full flex flex-col items-center justify-center px-4">
           <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer">
