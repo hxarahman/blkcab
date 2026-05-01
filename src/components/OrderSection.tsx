@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import orderAheadImage from "@/assets/order-ahead.jpg";
 import bcStackSticker from "@/assets/bc-stack-sticker.png";
+import upcomingLondon from "@/assets/upcoming-london-storefront.jpeg";
+import upcomingCairo from "@/assets/upcoming-cairo-interior.jpeg";
 
 export const OrderSection = () => {
   return (
@@ -48,6 +50,45 @@ export const OrderSection = () => {
               className="w-full h-full object-cover"
             />
           </div>
+
+          {/* Upcoming Locations */}
+          <div className="space-y-6 pt-6">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-center">
+              Upcoming
+            </h3>
+
+            <div className="space-y-3">
+              <h4 className="text-lg md:text-xl font-semibold">• London</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                  <img
+                    src={orderAheadImage}
+                    alt="Upcoming BLK CAB London location"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                  <img
+                    src={upcomingLondon}
+                    alt="Upcoming BLK CAB London green storefront"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="text-lg md:text-xl font-semibold">• Cairo - Tamara Haus</h4>
+              <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                <img
+                  src={upcomingCairo}
+                  alt="Upcoming BLK CAB Cairo - Tamara Haus location"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
           <div className="text-center space-y-4">
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
               Order Ahead
