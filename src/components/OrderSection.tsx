@@ -43,34 +43,29 @@ export const OrderSection = () => {
       {/* Order Ahead Section */}
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-6">
-          <div className="aspect-[4/3] overflow-hidden rounded-lg">
-            <img
-              src={orderAheadImage}
-              alt="Order ahead at BLK CAB"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
           {/* Upcoming Locations */}
-          <div className="space-y-6 pt-6">
+          <div className="space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-center">
               Upcoming
             </h3>
 
-            <div className="space-y-3">
-              <h4 className="text-lg md:text-xl font-semibold">• London</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <h4 className="text-lg md:text-xl font-semibold">• London - Little Portland st</h4>
                 <div className="aspect-[4/3] overflow-hidden rounded-lg">
                   <img
                     src={orderAheadImage}
-                    alt="Upcoming BLK CAB London location"
+                    alt="Upcoming BLK CAB London - Little Portland st"
                     className="w-full h-full object-cover"
                   />
                 </div>
+              </div>
+              <div className="space-y-3">
+                <h4 className="text-lg md:text-xl font-semibold">• London - Earlham st</h4>
                 <div className="aspect-[4/3] overflow-hidden rounded-lg">
                   <img
                     src={upcomingLondon}
-                    alt="Upcoming BLK CAB London green storefront"
+                    alt="Upcoming BLK CAB London - Earlham st"
                     className="w-full h-full object-cover"
                   />
                 </div>
