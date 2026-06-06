@@ -27,6 +27,9 @@ export const Header = () => {
           <Link to="/about" className="text-sm font-medium hover:text-accent transition-colors">
             ABOUT
           </Link>
+          <Link to="/mind-the-cab" className="text-sm font-medium hover:text-accent transition-colors">
+            GAME
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
