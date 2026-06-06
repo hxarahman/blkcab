@@ -117,50 +117,56 @@ const Locations = () => {
                 </div>
               </div>
 
+              {/* Now Open */}
+              <div className="space-y-8 mb-16">
+                <h2 className="text-3xl font-bold tracking-tight text-center mb-8">
+                  Now Open!
+                </h2>
+
+                <div className="max-w-2xl mx-auto p-8 bg-secondary/30 border border-border rounded-lg">
+                  <div className="space-y-4">
+                    <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
+                      Now Open
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight">
+                      12 Little Portland Street
+                    </h3>
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-accent mt-0.5" />
+                      <p className="text-muted-foreground">
+                        12 Little Portland Street<br />
+                        London<br />
+                        United Kingdom
+                      </p>
+                    </div>
+                    <a
+                      href="https://maps.app.goo.gl/ZrFRNai5L54BVy9AA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-accent hover:underline text-sm"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      View on Google Maps
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Coming Soon Locations */}
               <div className="space-y-8">
                 <h2 className="text-3xl font-bold tracking-tight text-center mb-8">
                   Coming Soon
                 </h2>
-                
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Little Portland Street */}
-                  <div className="p-8 bg-secondary/30 border border-border rounded-lg">
-                    <div className="space-y-4">
-                      <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
-                        Coming Soon
-                      </div>
-                      <h3 className="text-2xl font-bold tracking-tight">
-                        12 Little Portland Street
-                      </h3>
-                      <div className="flex items-start gap-3">
-                        <MapPin className="h-5 w-5 text-accent mt-0.5" />
-                        <p className="text-muted-foreground">
-                          12 Little Portland Street<br />
-                          London<br />
-                          United Kingdom
-                        </p>
-                      </div>
-                      <a
-                        href="https://maps.app.goo.gl/ZrFRNai5L54BVy9AA"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-accent hover:underline text-sm"
-                      >
-                        <MapPin className="h-4 w-4" />
-                        View on Google Maps
-                      </a>
-                    </div>
-                  </div>
 
-                  {/* Earlham Street */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Earlham Street - Covent Garden */}
                   <div className="p-8 bg-secondary/30 border border-border rounded-lg">
                     <div className="space-y-4">
                       <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
                         Coming Soon
                       </div>
                       <h3 className="text-2xl font-bold tracking-tight">
-                        18 Earlham Street
+                        Covent Garden - 18 Earlham Street
                       </h3>
                       <div className="flex items-start gap-3">
                         <MapPin className="h-5 w-5 text-accent mt-0.5" />
@@ -179,6 +185,26 @@ const Locations = () => {
                         <MapPin className="h-4 w-4" />
                         View on Google Maps
                       </a>
+                    </div>
+                  </div>
+
+                  {/* Cairo - Tamara Haus */}
+                  <div className="p-8 bg-secondary/30 border border-border rounded-lg">
+                    <div className="space-y-4">
+                      <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
+                        Coming Soon
+                      </div>
+                      <h3 className="text-2xl font-bold tracking-tight">
+                        Cairo - Tamara Haus
+                      </h3>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-5 w-5 text-accent mt-0.5" />
+                        <p className="text-muted-foreground">
+                          Tamara Haus<br />
+                          Cairo<br />
+                          Egypt
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
