@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import menuAsset from "@/assets/blk-cab-menu.png.asset.json";
 
 const Menu = () => {
   const menuCategories = [
@@ -82,6 +84,11 @@ const Menu = () => {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Crafted for you, built for & around people and coffee
               </p>
+              <div className="mt-6 flex justify-center">
+                <a href={menuAsset.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="cta" size="lg">VIEW FULL MENU</Button>
+                </a>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
