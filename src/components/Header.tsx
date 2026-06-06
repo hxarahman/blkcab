@@ -27,6 +27,9 @@ export const Header = () => {
           <Link to="/about" className="text-sm font-medium hover:text-accent transition-colors">
             ABOUT
           </Link>
+          <Link to="/mind-the-cab" className="text-sm font-medium hover:text-accent transition-colors">
+            GAME
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
@@ -68,6 +71,13 @@ export const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               ABOUT
+            </Link>
+            <Link
+              to="/mind-the-cab"
+              className="text-sm font-medium hover:text-accent transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              GAME
             </Link>
             <a href="https://blkcablondon.square.site/#most-popular" target="_blank" rel="noopener noreferrer" className="w-full">
               <Button variant="cta" className="w-full">
