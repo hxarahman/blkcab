@@ -47,8 +47,8 @@ const Locations = () => {
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Address</h3>
                       <p className="text-muted-foreground">
-                        St Christopher's Place<br />
-                        London<br />
+                        1 Barrett St<br />
+                        London W1U 1AX<br />
                         United Kingdom
                       </p>
                     </div>
@@ -94,7 +94,7 @@ const Locations = () => {
                 <div className="space-y-4">
                   <div className="rounded-lg overflow-hidden shadow-2xl border border-border h-[500px]">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.8744843869434!2d-0.15254492346931973!3d51.51613797181579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ad554c335c1%3A0xda2164b934c67c1a!2sSt%20Christopher&#39;s%20Pl%2C%20London%2C%20UK!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s"
+                      src="https://www.google.com/maps?q=1+Barrett+St,+London+W1U+1AX,+United+Kingdom&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
@@ -140,8 +140,8 @@ const Locations = () => {
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Address</h3>
                       <p className="text-muted-foreground">
-                        12 Little Portland Street<br />
-                        London<br />
+                        12A Little Portland St<br />
+                        London W1W 8BJ<br />
                         United Kingdom
                       </p>
                     </div>
@@ -187,7 +187,7 @@ const Locations = () => {
                 <div className="space-y-4">
                   <div className="rounded-lg overflow-hidden shadow-2xl border border-border h-[500px]">
                     <iframe
-                      src="https://www.google.com/maps?q=12+Little+Portland+Street,+London,+UK&output=embed"
+                      src="https://www.google.com/maps?q=12A+Little+Portland+St,+London+W1W+8BJ,+United+Kingdom&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
