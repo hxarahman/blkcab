@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import menuAsset from "@/assets/blk-cab-menu.png.asset.json";
+import menuAsset from "@/assets/blk-cab-menu.jpeg.asset.json";
 
 const Menu = () => {
   const menuCategories = [
