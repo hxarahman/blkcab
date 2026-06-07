@@ -116,40 +116,99 @@ const Locations = () => {
                 </div>
               </div>
 
-              {/* Now Open */}
-              <div className="space-y-8 mb-16">
-                <h2 className="text-3xl font-bold tracking-tight text-center mb-8">
-                  Now Open!
-                </h2>
-
-                <div className="max-w-2xl mx-auto p-8 bg-secondary/30 border border-border rounded-lg">
-                  <div className="space-y-4">
-                    <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-2">
+              {/* Now Open - 12 Little Portland Street */}
+              <div className="grid md:grid-cols-2 gap-12 items-start mb-24">
+                {/* Location Info */}
+                <div className="space-y-8">
+                  <div>
+                    <div className="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-medium rounded-full mb-4">
                       Now Open
                     </div>
-                    <h3 className="text-2xl font-bold tracking-tight">
+                    <h2 className="text-4xl font-bold tracking-tight mb-6">
                       12 Little Portland Street
-                    </h3>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="h-5 w-5 text-accent mt-0.5" />
+                    </h2>
+                    <p className="text-lg text-muted-foreground mb-8">
+                      Our newest spot, bringing BLK CAB® coffee culture to Fitzrovia.
+                    </p>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1">
+                      <MapPin className="h-6 w-6 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Address</h3>
                       <p className="text-muted-foreground">
                         12 Little Portland Street<br />
                         London<br />
                         United Kingdom
                       </p>
                     </div>
-                    <a
-                      href="https://maps.app.goo.gl/ZrFRNai5L54BVy9AA"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent hover:underline text-sm"
-                    >
-                      <MapPin className="h-4 w-4" />
-                      View on Google Maps
-                    </a>
+                  </div>
+
+                  {/* Hours */}
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1">
+                      <Clock className="h-6 w-6 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Opening Hours</h3>
+                      <div className="space-y-1 text-muted-foreground">
+                        <p>Monday - Saturday: 8:00 AM - 10:00 PM</p>
+                        <p>Sunday: 10:00 AM - 10:00 PM</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Contact */}
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1">
+                      <Phone className="h-6 w-6 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Contact</h3>
+                      <p className="text-muted-foreground">
+                        Phone: Coming soon<br />
+                        Email: info@blkcab.co.uk
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="pt-4">
+                    <Button size="lg" className="w-full md:w-auto">
+                      ORDER NOW FOR PICKUP
+                    </Button>
                   </div>
                 </div>
+
+                {/* Map */}
+                <div className="space-y-4">
+                  <div className="rounded-lg overflow-hidden shadow-2xl border border-border h-[500px]">
+                    <iframe
+                      src="https://www.google.com/maps?q=12+Little+Portland+Street,+London,+UK&output=embed"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="BLK CAB® Little Portland Street Map"
+                    />
+                  </div>
+                  <a
+                    href="https://maps.app.goo.gl/ZrFRNai5L54BVy9AA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-accent hover:underline"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Open in Google Maps
+                  </a>
+                </div>
               </div>
+
 
               {/* Coming Soon Locations */}
               <div className="space-y-8">
