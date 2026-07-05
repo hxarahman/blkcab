@@ -8,8 +8,8 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 max-w-6xl mx-auto">
           <div className="space-y-4">
-            <img src={logoWhite} alt="BLK CAB" className="h-12 w-auto mb-3" />
-            <img src={stickerBadge} alt="BC Coffee&People" className="h-10 w-auto" />
+            <img src={logoWhite} alt="BLK CAB" width={1280} height={640} loading="lazy" className="h-12 w-auto mb-3" />
+            <img src={stickerBadge} alt="BC Coffee&People" width={528} height={112} loading="lazy" className="h-10 w-auto" />
             <p className="text-sm text-primary-foreground/80">
               BLK CAB® (Coffee&People)
             </p>

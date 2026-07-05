@@ -2,10 +2,44 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Seo } from "@/components/Seo";
+
+// =====================================================================
+// OWNER TODO: replace with the real structured opening hours for the
+// Little Portland Street shop, e.g. ["Mo-Sa 08:00-22:00", "Su 10:00-22:00"]
+// (format: https://schema.org/openingHours). Search engines read this.
+// =====================================================================
+const LITTLE_PORTLAND_OPENING_HOURS: string[] = [
+  "PLACEHOLDER — e.g. Mo-Sa 08:00-22:00",
+  "PLACEHOLDER — e.g. Su 10:00-22:00",
+];
+
+const littlePortlandJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  name: "BLK CAB Coffee",
+  servesCuisine: "Coffee, Matcha",
+  priceRange: "££",
+  url: "https://blkcab.com/locations",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "12A Little Portland St",
+    addressLocality: "London",
+    postalCode: "W1W 8BJ",
+    addressCountry: "GB",
+  },
+  openingHours: LITTLE_PORTLAND_OPENING_HOURS,
+};
 
 const Locations = () => {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Locations — BLK CAB® Coffee, London"
+        description="Find BLK CAB® Coffee in London — St Christopher's Place & 12A Little Portland Street, with Covent Garden & Cairo coming soon. Mind the Cab."
+        path="/locations"
+        jsonLd={littlePortlandJsonLd}
+      />
       <Header />
       <main className="pt-16">
         {/* Hero Section */}

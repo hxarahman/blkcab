@@ -1,9 +1,15 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Seo } from "@/components/Seo";
 
 const About = () => {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="About — BLK CAB® Coffee & People, Est. 2017"
+        description="Est. 2017, BLK CAB® is built for & around people & coffee — a brand with a conscience, strong UK culture and a relentless commitment to community."
+        path="/about"
+      />
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
