@@ -6,6 +6,8 @@ export const Hero = () => {
         loop
         muted
         playsInline
+        preload="metadata"
+        poster="/posters/hero-video-poster.jpg"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
