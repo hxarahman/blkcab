@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const emailSchema = z.object({
@@ -34,11 +35,16 @@ export const EmailCaptureDialog = ({ open, onOpenChange }: EmailCaptureDialogPro
     setIsSubmitting(true);
 
     try {
-      emailSchema.parse({ email });
-      
-      // For now, just show success message
-      // TODO: Store email when backend is enabled
-      
+      const validated = emailSchema.parse({ email });
+
+      const { error: insertError } = await supabase.from("players").insert({
+        email: validated.email.toLowerCase(),
+        marketing_opt_in: true,
+      });
+
+      // 23505 = already on the list — treat as success
+      if (insertError && insertError.code !== "23505") throw insertError;
+
       toast({
         title: "You're on the list!",
         description: "We'll notify you as soon as online ordering launches.",
@@ -51,6 +57,12 @@ export const EmailCaptureDialog = ({ open, onOpenChange }: EmailCaptureDialogPro
         toast({
           title: "Invalid email",
           description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: "Couldn't save your email — please try again.",
           variant: "destructive",
         });
       }
