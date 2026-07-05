@@ -1,20 +1,16 @@
 import { Button } from "./ui/button";
-
+import { LazyVideo } from "./LazyVideo";
 
 export const SoundsSection = () => {
   return (
     <section className="bg-background">
       {/* Hero Video */}
       <div className="relative h-[60vh] w-full overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <LazyVideo
+          src="/sounds-hero.mp4"
+          poster="/posters/sounds-hero-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/sounds-hero.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
         
         <div className="relative h-full flex items-center justify-center">

@@ -1,10 +1,10 @@
 import { Button } from "./ui/button";
+import { LazyVideo } from "./LazyVideo";
 import merchHero from "@/assets/merch-hero.jpg";
 import merchTanks from "@/assets/merch-tanks.jpg";
 import merchUmbrella from "@/assets/merch-umbrella.jpg";
 import merchFlask from "@/assets/merch-flask.jpg";
 import merchTote from "@/assets/merch-tote.jpg";
-import shopMatcha from "@/assets/shop-matcha.jpg";
 import starterKit from "@/assets/starter-kit.jpg";
 
 export const ShopSection = () => {
@@ -26,6 +26,9 @@ export const ShopSection = () => {
               <img
                 src={merchHero}
                 alt="BLK CAB® Community Merch - I'M BLK CAB® (Coffee&People)"
+                width={1320}
+                height={754}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -43,21 +46,33 @@ export const ShopSection = () => {
               <img
                 src={merchTanks}
                 alt="BLK CAB® Tank Tops"
+                width={1320}
+                height={1450}
+                loading="lazy"
                 className="w-full h-auto object-cover rounded-lg"
               />
               <img
                 src={merchUmbrella}
                 alt="BLK CAB® Umbrella & Wool Scarf"
+                width={763}
+                height={755}
+                loading="lazy"
                 className="w-full h-auto object-cover rounded-lg"
               />
               <img
                 src={merchFlask}
                 alt="BLK CAB® Stainless Flask"
+                width={1320}
+                height={729}
+                loading="lazy"
                 className="w-full h-auto object-cover rounded-lg"
               />
               <img
                 src={merchTote}
                 alt="BLK CAB® Tote Bag & Keychain"
+                width={1320}
+                height={1378}
+                loading="lazy"
                 className="w-full h-auto object-cover rounded-lg"
               />
             </div>
@@ -84,6 +99,9 @@ export const ShopSection = () => {
               <img
                 src={starterKit}
                 alt="BLK CAB® Starter Kit - Matcha tins"
+                width={1439}
+                height={1920}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -107,15 +125,11 @@ export const ShopSection = () => {
             </div>
             
             <div className="aspect-[16/9] overflow-hidden rounded-lg max-w-4xl mx-auto">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
+              <LazyVideo
+                src="/shop-hero.mp4"
+                poster="/posters/shop-hero-poster.jpg"
                 className="w-full h-full object-cover"
-              >
-                <source src="/shop-hero.mp4" type="video/mp4" />
-              </video>
+              />
             </div>
             
             <div className="text-center">
