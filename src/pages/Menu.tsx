@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Seo } from "@/components/Seo";
 import menuAsset from "@/assets/blk-cab-menu.jpeg.asset.json";
 
 const Menu = () => {
@@ -73,6 +74,11 @@ const Menu = () => {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Menu — BLK CAB® Coffee | Coffee, Matcha Series & Brew Bar"
+        description="Espresso, flat whites, the Matcha Series, brew bar & signature drinks — crafted for you at BLK CAB® Coffee, London. Mind the Cab."
+        path="/menu"
+      />
       <Header />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
