@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { trackEvent } from "@/lib/analytics";
 import { z } from "zod";
 
 const emailSchema = z.object({
@@ -44,6 +45,8 @@ export const EmailCaptureDialog = ({ open, onOpenChange }: EmailCaptureDialogPro
 
       // 23505 = already on the list — treat as success
       if (insertError && insertError.code !== "23505") throw insertError;
+
+      trackEvent("email_signup", { source: "email_capture_dialog" });
 
       toast({
         title: "You're on the list!",

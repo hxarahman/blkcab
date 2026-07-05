@@ -8,6 +8,8 @@ import { TutorialScreen } from "@/game/TutorialScreen";
 import { ResultScreen } from "@/game/ResultScreen";
 import { SettingsPanel } from "@/game/SettingsPanel";
 import { useSettings } from "@/game/useSettings";
+import { Seo } from "@/components/Seo";
+import { trackEvent } from "@/lib/analytics";
 import "./../MindTheCab.css";
 
 const directionalKeys: Record<string, "up" | "down" | "left" | "right"> = {
@@ -47,6 +49,17 @@ const MindTheCab = () => {
     return () => window.clearTimeout(t);
   }, [powerFx]);
 
+  // GA4 game events — observed from phase transitions (game engine untouched).
+  const prevPhaseRef = useRef(state.phase);
+  useEffect(() => {
+    const prev = prevPhaseRef.current;
+    if (state.phase !== prev) {
+      if (state.phase === "playing") trackEvent("game_start");
+      if (state.phase === "result") trackEvent("game_end", { score: state.score });
+      prevPhaseRef.current = state.phase;
+    }
+  }, [state.phase, state.score]);
+
   const isLive = state.phase === "playing" || state.phase === "ready";
 
   useEffect(() => {
@@ -59,6 +72,11 @@ const MindTheCab = () => {
 
   return (
     <div className="mtc dark" id="mtc">
+      <Seo
+        title="Mind The Cab — The BLK CAB® Game"
+        description="Play Mind The Cab — the BLK CAB® game. Dodge hazards, collect drinks, top the leaderboard and unlock rewards at our London shops."
+        path="/mind-the-cab"
+      />
       <main
         ref={surfaceRef}
         tabIndex={0}
