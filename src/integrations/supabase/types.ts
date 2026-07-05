@@ -14,7 +14,112 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      game_scores: {
+        Row: {
+          created_at: string
+          id: string
+          initials: string
+          player_id: string | null
+          rank_name: string
+          score: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          initials: string
+          player_id?: string | null
+          rank_name: string
+          score: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          initials?: string
+          player_id?: string | null
+          rank_name?: string
+          score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_scores_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      players: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string | null
+          id: string
+          marketing_opt_in: boolean
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name?: string | null
+          id?: string
+          marketing_opt_in?: boolean
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          marketing_opt_in?: boolean
+        }
+        Relationships: []
+      }
+      reward_codes: {
+        Row: {
+          code: string
+          expires_at: string
+          id: string
+          issued_at: string
+          player_id: string
+          rank_name: string
+          redeemed_at: string | null
+          redeemed_location: string | null
+          reward_label: string
+          score: number
+        }
+        Insert: {
+          code: string
+          expires_at: string
+          id?: string
+          issued_at?: string
+          player_id: string
+          rank_name: string
+          redeemed_at?: string | null
+          redeemed_location?: string | null
+          reward_label: string
+          score: number
+        }
+        Update: {
+          code?: string
+          expires_at?: string
+          id?: string
+          issued_at?: string
+          player_id?: string
+          rank_name?: string
+          redeemed_at?: string | null
+          redeemed_location?: string | null
+          reward_label?: string
+          score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reward_codes_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
