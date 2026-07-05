@@ -12,8 +12,8 @@ export const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2" aria-label="BLK CAB Coffee & People — Home">
-          <img src={blkCabLogo} alt="BLK CAB" className="h-5 md:h-7 w-auto" />
-          <img src={blkCabSticker} alt="BC® (Coffee & People)" className="h-7 md:h-9 w-auto" />
+          <img src={blkCabLogo} alt="BLK CAB" width={1002} height={191} className="h-5 md:h-7 w-auto" />
+          <img src={blkCabSticker} alt="BC® (Coffee & People)" width={528} height={112} className="h-7 md:h-9 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
