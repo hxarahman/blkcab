@@ -3,6 +3,7 @@ import blkcabLogo from "@/assets/game/blkcab-logo.png";
 import mtcPill from "@/assets/game/sticker-mtc-orange-pill.png";
 import est2017Pill from "@/assets/game/sticker-est2017-green-pill.png";
 import { Link } from "react-router-dom";
+import { Leaderboard } from "@/game/Leaderboard";
 
 export const StartScreen = ({ onStart }: { onStart: () => void }) => {
   return (
@@ -64,6 +65,8 @@ export const StartScreen = ({ onStart }: { onStart: () => void }) => {
         <p className="text-base text-foreground/80 max-w-xs text-balance mt-3 leading-snug">
           Move through the streets. Collect the good energy. <span className="text-olive">Avoid the noise.</span>
         </p>
+
+        <Leaderboard compact />
       </div>
 
       <div className="w-full flex flex-col items-center gap-2">

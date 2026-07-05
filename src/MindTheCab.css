@@ -179,6 +179,16 @@
     overscroll-behavior: contain;
   }
 
+  /* Form fields inside the game (result screen) must stay typeable/selectable */
+  .mtc-input-layer input,
+  .mtc-input-layer select,
+  .mtc-input-layer textarea,
+  .mtc-input-layer label {
+    -webkit-user-select: text;
+    user-select: text;
+    touch-action: auto;
+  }
+
   .sticker-pill {
     @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
   }
