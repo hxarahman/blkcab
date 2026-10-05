@@ -16,34 +16,43 @@ const Menu = () => {
         { name: "Latte", price: "4.00" },
         { name: "Cappuccino", price: "4.00" },
         { name: "Flat White", price: "4.00" },
-        { name: "Spiced Latte", price: "5.50" },
         { name: "OG-Spanish*", price: "6.00" },
         { name: "Pistachio Latte", price: "6.00" },
-        { name: "Mocha", price: "6.00" },
+        { name: "Mocha*", price: "7.00" },
+        { name: "Brown Sugar Latte", price: "5.50" },
       ],
     },
     {
       title: "Matcha Series",
       items: [
-        { name: "Original Matcha", price: "5.90" },
-        { name: "OG-Matcha*", price: "6.00" },
-        { name: "Strawberry Matcha", price: "6.00" },
-        { name: "UBE Matcha*", price: "6.00" },
-        { name: "Mango Matcha", price: "5.90" },
-        { name: "Lavender & Pistachio*", price: "6.00" },
-        { name: "Coconut Matcha", price: "6.00" },
-        { name: "Lychee Matcha", price: "5.90" },
-        { name: "Honey Dew Melon", price: "6.00" },
-        { name: "Osaka (Cherry Blossom)", price: "5.90" },
-        { name: "White Choc Matcha*", price: "7.00" },
+        { name: "The OG*", price: "6.00" },
+        { name: "Strawberry", price: "6.00" },
+        { name: "UBE*", price: "6.00" },
+        { name: "Mango*", price: "6.00" },
+        { name: "Lavender + Pistachio", price: "6.00" },
+        { name: "White Choc*", price: "7.00" },
+        { name: "Seasalt Maple", price: "5.90" },
+        { name: "Coconut Cloud*", price: "5.90" },
+        { name: "Brown Sugar", price: "5.90" },
+        { name: "Blueberry", price: "6.50" },
       ],
     },
     {
-      title: "Signature",
+      title: "Something Special",
       items: [
+        { name: "Burnt Honey*", price: "6.50" },
         { name: "BLK Sesame*", price: "6.50" },
         { name: "UBE Latte*", price: "6.00" },
-        { name: "Burnt Honey*", price: "6.50" },
+        { name: "Espresso Cloud*", price: "5.90" },
+      ],
+    },
+    {
+      title: "UBE Series",
+      items: [
+        { name: "UBE Cloud*", price: "6.00" },
+        { name: "UBE & Mango*", price: "6.00" },
+        { name: "UBE & Coconut*", price: "6.00" },
+        { name: "UBE & Pandan*", price: "6.00" },
       ],
     },
     {
@@ -51,10 +60,18 @@ const Menu = () => {
       items: [
         { name: "V60", price: "8.50" },
         { name: "Cold Brew", price: "5.00" },
-        { name: "Lavender", price: "5.90" },
-        { name: "Seasalt Maple", price: "5.90" },
-        { name: "Matcha Horchata", price: "6.00" },
-        { name: "Coconut Cloud*", price: "5.90" },
+      ],
+    },
+    {
+      title: "Mojito",
+      items: [
+        { name: "Mango, Blueberry, Strawberry, Cubana", price: "4.90" },
+      ],
+    },
+    {
+      title: "Hot / Iced Choc",
+      items: [
+        { name: "White, Milk, Dark", price: "7.00" },
       ],
     },
     {
@@ -62,12 +79,7 @@ const Menu = () => {
       items: [
         { name: "Tea Selection", price: "4.00" },
         { name: "Dubai Karak*", price: "4.90" },
-      ],
-    },
-    {
-      title: "Hot Chocolate",
-      items: [
-        { name: "White, Milk, Dark", price: "7.00" },
+        { name: "Hibiscus", price: "5.00" },
       ],
     },
   ];
