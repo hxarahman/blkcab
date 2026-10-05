@@ -111,7 +111,7 @@ const Locations = () => {
                       <h3 className="font-semibold text-lg mb-2">Contact</h3>
                       <p className="text-muted-foreground">
                         Phone: Coming soon<br />
-                        Email: info@blackapp.com
+                        Email: info@blkcab.com
                       </p>
                     </div>
                   </div>
@@ -204,7 +204,7 @@ const Locations = () => {
                       <h3 className="font-semibold text-lg mb-2">Contact</h3>
                       <p className="text-muted-foreground">
                         Phone: Coming soon<br />
-                        Email: info@blackapp.com
+                        Email: info@blkcab.com
                       </p>
                     </div>
                   </div>

@@ -55,7 +55,7 @@ export const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-sm tracking-wide">CONTACT</h4>
             <p className="text-sm text-primary-foreground/80">
-              info@blackapp.com
+              info@blkcab.com
             </p>
           </div>
         </div>
