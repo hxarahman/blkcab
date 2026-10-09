@@ -30,15 +30,45 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BLK CAB Coffee",
-    "alternateName": "BLK CAB® (Coffee&People)",
-    "url": "https://blkcab.com",
-    "foundingDate": "2017",
-    "slogan": "Built for & around (People & Coffee)",
-    "sameAs": [
-      "https://www.instagram.com/blkcab.london",
-      "https://www.tiktok.com/@blkcablondon"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://blkcab.com/#org",
+        "name": "BLK CAB Coffee",
+        "alternateName": "BLK CAB® (Coffee&People)",
+        "url": "https://blkcab.com",
+        "email": "info@blkcab.com",
+        "foundingDate": "2017",
+        "slogan": "Built for & around (People & Coffee)",
+        "sameAs": [
+          "https://www.instagram.com/blkcab.london",
+          "https://www.tiktok.com/@blkcablondon"
+        ]
+      },
+      {
+        "@type": "CafeOrCoffeeShop",
+        "name": "BLK CAB Coffee — St Christopher's Place",
+        "parentOrganization": { "@id": "https://blkcab.com/#org" },
+        "url": "https://blkcab.com/locations",
+        "menu": "https://blkcab.com/menu",
+        "servesCuisine": ["Specialty coffee", "Matcha"],
+        "priceRange": "££",
+        "email": "info@blkcab.com",
+        "address": { "@type": "PostalAddress", "streetAddress": "1 Barrett St", "addressLocality": "London", "postalCode": "W1U 1AX", "addressCountry": "GB" },
+        "openingHours": ["Mo-Sa 08:00-22:45", "Su 10:00-22:00"]
+      },
+      {
+        "@type": "CafeOrCoffeeShop",
+        "name": "BLK CAB Coffee — Little Portland Street",
+        "parentOrganization": { "@id": "https://blkcab.com/#org" },
+        "url": "https://blkcab.com/locations",
+        "menu": "https://blkcab.com/menu",
+        "servesCuisine": ["Specialty coffee", "Matcha"],
+        "priceRange": "££",
+        "email": "info@blkcab.com",
+        "address": { "@type": "PostalAddress", "streetAddress": "12A Little Portland St", "addressLocality": "London", "postalCode": "W1W 8BJ", "addressCountry": "GB" },
+        "openingHours": ["Mo-Sa 08:00-22:00", "Su 10:00-22:00"]
+      }
     ]
   }
   </script>
