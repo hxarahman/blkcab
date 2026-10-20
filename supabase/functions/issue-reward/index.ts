@@ -4,10 +4,10 @@ import { z } from 'npm:zod@3.23.8'
 
 // Reward tiers — server-side source of truth. Must match game ranks.
 const REWARDS: Record<string, { label: string; minScore: number }> = {
-  'House Regular': { label: 'Free sticker pack', minScore: 600 },
-  'Cabbie': { label: 'Free upsize', minScore: 1000 },
-  'Cult Driver': { label: 'Free drink', minScore: 1600 },
-  'BC Insider': { label: 'Free drink + sticker pack', minScore: 2500 },
+  'House Regular': { label: '10% off your order', minScore: 600 },
+  'Cabbie': { label: '10% off your order', minScore: 1000 },
+  'Cult Driver': { label: '10% off your order', minScore: 1600 },
+  'BC Insider': { label: '10% off your order', minScore: 2500 },
 }
 
 const BodySchema = z.object({
