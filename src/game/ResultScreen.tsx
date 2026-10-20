@@ -25,7 +25,7 @@ const RANK_COPY: Record<string, string> = {
 };
 
 const NO_REWARD_COPY: Record<string, string> = {
-  Passenger: "No code yet. Hop back in — House Regular unlocks the first sticker.",
+  Passenger: "No code yet. Hop back in — House Regular unlocks your 10% off code.",
   Regular: "Close. Push to House Regular for your first reward code.",
 };
 
