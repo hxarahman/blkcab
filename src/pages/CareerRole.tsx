@@ -50,7 +50,7 @@ const CareerRole = () => {
             <p className="text-sm font-medium tracking-wide uppercase">{role.team} · {role.location} · {employmentLabel(role.employment_type)}</p>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight uppercase">{role.title}</h1>
             {role.summary && <p className="text-lg md:text-xl font-light">{role.summary}</p>}
-            <Button variant="cta" onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth" })}>APPLY NOW</Button>
+            <Button variant="cta" className="border border-primary-foreground" onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth" })}>APPLY NOW</Button>
           </div>
         </section>
         <section className="py-24 bg-background">
