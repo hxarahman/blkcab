@@ -1,0 +1,1 @@
+- Careers admin access is granted only via `public.user_roles` + `has_role()`; never add public sign-up — keeps applicant data admin-only.

@@ -38,5 +38,6 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /redeem
+Disallow: /careers/admin
 
 Sitemap: https://blkcab.com/sitemap.xml

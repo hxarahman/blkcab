@@ -7,13 +7,26 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "14.5"
-  }
   public: {
     Tables: {
+      careers_settings: {
+        Row: {
+          id: number
+          notification_email: string | null
+          notifications_enabled: boolean | null
+        }
+        Insert: {
+          id?: number
+          notification_email?: string | null
+          notifications_enabled?: boolean | null
+        }
+        Update: {
+          id?: number
+          notification_email?: string | null
+          notifications_enabled?: boolean | null
+        }
+        Relationships: []
+      }
       game_scores: {
         Row: {
           created_at: string
@@ -48,6 +61,134 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      job_applications: {
+        Row: {
+          about: string | null
+          admin_notes: string | null
+          availability: string | null
+          consent_at: string | null
+          created_at: string | null
+          cv_path: string | null
+          email: string
+          full_name: string
+          gdpr_consent: boolean
+          id: string
+          location: string | null
+          phone: string | null
+          right_to_work_uk: boolean | null
+          role_id: string | null
+          role_title: string | null
+          status: string
+        }
+        Insert: {
+          about?: string | null
+          admin_notes?: string | null
+          availability?: string | null
+          consent_at?: string | null
+          created_at?: string | null
+          cv_path?: string | null
+          email: string
+          full_name: string
+          gdpr_consent: boolean
+          id?: string
+          location?: string | null
+          phone?: string | null
+          right_to_work_uk?: boolean | null
+          role_id?: string | null
+          role_title?: string | null
+          status?: string
+        }
+        Update: {
+          about?: string | null
+          admin_notes?: string | null
+          availability?: string | null
+          consent_at?: string | null
+          created_at?: string | null
+          cv_path?: string | null
+          email?: string
+          full_name?: string
+          gdpr_consent?: boolean
+          id?: string
+          location?: string | null
+          phone?: string | null
+          right_to_work_uk?: boolean | null
+          role_id?: string | null
+          role_title?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_role_id_fkey"
+            columns: ["role_id"]
+            isOneToOne: false
+            referencedRelation: "job_roles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_roles: {
+        Row: {
+          created_at: string | null
+          date_posted: string | null
+          description: string | null
+          employment_type: string | null
+          hours: string | null
+          id: string
+          is_open: boolean | null
+          location: string | null
+          pay: string | null
+          perks: string[] | null
+          requirements: string[] | null
+          responsibilities: string[] | null
+          slug: string
+          sort_order: number | null
+          summary: string | null
+          team: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          date_posted?: string | null
+          description?: string | null
+          employment_type?: string | null
+          hours?: string | null
+          id?: string
+          is_open?: boolean | null
+          location?: string | null
+          pay?: string | null
+          perks?: string[] | null
+          requirements?: string[] | null
+          responsibilities?: string[] | null
+          slug: string
+          sort_order?: number | null
+          summary?: string | null
+          team?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          date_posted?: string | null
+          description?: string | null
+          employment_type?: string | null
+          hours?: string | null
+          id?: string
+          is_open?: boolean | null
+          location?: string | null
+          pay?: string | null
+          perks?: string[] | null
+          requirements?: string[] | null
+          responsibilities?: string[] | null
+          slug?: string
+          sort_order?: number | null
+          summary?: string | null
+          team?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
       }
       players: {
         Row: {
@@ -120,15 +261,39 @@ export type Database = {
           },
         ]
       }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -255,6 +420,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const
+

@@ -27,6 +27,9 @@ export const Footer = () => {
               <Link to="/about" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                 About Us
               </Link>
+              <Link to="/careers" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                Careers
+              </Link>
             </div>
           </div>
 

@@ -12,6 +12,10 @@ import Locations from "./pages/Locations";
 import NotFound from "./pages/NotFound";
 import MindTheCab from "./pages/MindTheCab";
 import Redeem from "./pages/Redeem";
+import Careers from "./pages/Careers";
+import CareerRole from "./pages/CareerRole";
+import CareerApply from "./pages/CareerApply";
+import CareersAdmin from "./pages/CareersAdmin";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +42,10 @@ const App = () => (
           <Route path="/locations" element={<Locations />} />
           <Route path="/mind-the-cab" element={<MindTheCab />} />
           <Route path="/redeem" element={<Redeem />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/apply" element={<CareerApply />} />
+          <Route path="/careers/admin" element={<CareersAdmin />} />
+          <Route path="/careers/:slug" element={<CareerRole />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
