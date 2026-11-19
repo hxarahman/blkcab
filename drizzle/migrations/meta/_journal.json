@@ -8,6 +8,13 @@
       "when": 1795111675024,
       "tag": "0000_careers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795112140080,
+      "tag": "0001_careers_quiz",
+      "breakpoints": true
     }
   ]
 }

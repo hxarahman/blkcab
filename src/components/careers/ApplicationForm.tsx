@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { fetchOpenRoles, type JobRole } from "@/lib/careers";
+import { fetchOpenRoles, fetchQuestions, isRequiredFor, type JobRole, type QuizQuestion } from "@/lib/careers";
 
 const MAX = 5 * 1024 * 1024;
 const EXT = ["pdf", "doc", "docx"];
@@ -39,13 +39,35 @@ export const ApplicationForm = ({ defaultRoleId }: { defaultRoleId?: string }) =
   const [roles, setRoles] = useState<JobRole[]>([]);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { register, handleSubmit, control, setValue, formState: { errors, isSubmitting } } = useForm<Values>({
+  const [step, setStep] = useState(0);
+  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [quizErr, setQuizErr] = useState<string | null>(null);
+  const { register, handleSubmit, control, setValue, watch, trigger, formState: { errors, isSubmitting } } = useForm<Values>({
     resolver: zodResolver(schema),
     defaultValues: { role: defaultRoleId ?? GENERAL },
   });
 
   useEffect(() => { fetchOpenRoles().then(setRoles).catch(() => setRoles([])); }, []);
   useEffect(() => { if (defaultRoleId) setValue("role", defaultRoleId); }, [defaultRoleId, setValue]);
+  const roleId = watch("role");
+  const slug = roles.find((r) => r.id === roleId)?.slug ?? "general";
+  useEffect(() => {
+    let live = true;
+    fetchQuestions(slug).then((q) => { if (live) { setQuestions(q); setAnswers({}); } }).catch(() => live && setQuestions([]));
+    return () => { live = false; };
+  }, [slug]);
+
+  const next = async () => {
+    if (step === 0) {
+      const ok = await trigger(["full_name", "email", "phone", "role", "right_to_work", "availability", "start_date"]);
+      if (ok) { setStep(1); window.scrollTo({ top: (document.getElementById("app-form")?.offsetTop ?? 0) - 80, behavior: "smooth" }); }
+    } else if (step === 1) {
+      const missing = questions.filter((q) => isRequiredFor(q, slug) && !answers[q.id]?.trim());
+      if (missing.length) { setQuizErr(`Please answer all required questions (${missing.length} left).`); return; }
+      setQuizErr(null); setStep(2);
+    }
+  };
 
   const onSubmit = async (v: Values) => {
     setError(null);
@@ -55,24 +77,23 @@ export const ApplicationForm = ({ defaultRoleId }: { defaultRoleId?: string }) =
       const up = await supabase.storage.from("cvs").upload(path, v.cv, { contentType: v.cv.type || undefined });
       if (up.error) throw up.error;
       const role = roles.find((r) => r.id === v.role);
-      const id = crypto.randomUUID();
-      const { error: insErr } = await supabase.from("job_applications").insert({
-        id,
-        role_id: role?.id ?? null,
-        role_title: role?.title ?? "General application",
-        full_name: v.full_name,
-        email: v.email.toLowerCase(),
-        phone: v.phone,
-        location: "London",
-        right_to_work_uk: v.right_to_work === "yes",
-        availability: v.start_date ? `${v.availability} — start: ${v.start_date}` : v.availability,
-        about: v.about || null,
-        cv_path: path,
-        gdpr_consent: true,
-        consent_at: new Date().toISOString(),
-        status: "new",
+      const { data: id, error: rpcErr } = await supabase.rpc("submit_application", {
+        payload: {
+          role_id: role?.id ?? null,
+          full_name: v.full_name,
+          email: v.email,
+          phone: v.phone,
+          right_to_work_uk: v.right_to_work === "yes",
+          availability: v.start_date ? `${v.availability} — start: ${v.start_date}` : v.availability,
+          about: v.about || null,
+          cv_path: path,
+          gdpr_consent: true,
+          answers: questions.map((q) => q.level === "free_text"
+            ? { question_id: q.id, answer_text: answers[q.id] ?? "" }
+            : { question_id: q.id, answer_key: answers[q.id] ?? null }),
+        },
       });
-      if (insErr) throw insErr;
+      if (rpcErr) throw rpcErr;
       supabase.functions.invoke("notify-application", { body: { application_id: id } }).catch(() => {});
       setDone(true);
     } catch {
@@ -90,7 +111,17 @@ export const ApplicationForm = ({ defaultRoleId }: { defaultRoleId?: string }) =
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+    <form id="app-form" onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+      <div className="space-y-3">
+        <div className="flex justify-between text-xs font-medium tracking-wide uppercase">
+          {["Your details", "Quick coffee questions", "CV & consent"].map((l, i) => (
+            <span key={l} className={i <= step ? "text-foreground" : "text-muted-foreground"}>{i + 1}. {l}</span>
+          ))}
+        </div>
+        <div className="h-1 bg-border"><div className="h-1 bg-accent transition-all" style={{ width: `${((step + 1) / 3) * 100}%` }} /></div>
+      </div>
+
+      <div className={step === 0 ? "space-y-6" : "hidden"}>
       <div className="grid md:grid-cols-2 gap-6">
         <div><Label htmlFor="full_name">Full name</Label><Input id="full_name" {...register("full_name")} /><Err m={errors.full_name?.message} /></div>
         <div><Label htmlFor="email">Email</Label><Input id="email" type="email" {...register("email")} /><Err m={errors.email?.message} /></div>
@@ -138,6 +169,38 @@ export const ApplicationForm = ({ defaultRoleId }: { defaultRoleId?: string }) =
         <div><Label htmlFor="start_date">Earliest start date (optional)</Label><Input id="start_date" placeholder="e.g. 1 December" {...register("start_date")} /></div>
       </div>
 
+      <Button type="button" variant="cta" onClick={next}>CONTINUE</Button>
+      </div>
+
+      {step === 1 && (
+        <div className="space-y-8">
+          <p className="text-muted-foreground">A few quick questions so we can get to know your coffee knowledge. No pressure — answer as best you can.</p>
+          {questions.map((q, i) => (
+            <div key={q.id} className="space-y-3">
+              <p className="font-medium">{i + 1}. {q.prompt}{!isRequiredFor(q, slug) && <span className="text-muted-foreground font-normal"> (optional)</span>}</p>
+              {q.level === "free_text" ? (
+                <Textarea rows={4} maxLength={3000} value={answers[q.id] ?? ""} onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))} />
+              ) : (
+                <RadioGroup value={answers[q.id] ?? ""} onValueChange={(v) => setAnswers((a) => ({ ...a, [q.id]: v }))} className="space-y-2">
+                  {(q.options as { key: string; label: string }[] | null ?? []).map((o) => (
+                    <div key={o.key} className="flex items-start gap-3">
+                      <RadioGroupItem value={o.key} id={`${q.id}-${o.key}`} className="mt-1" />
+                      <Label htmlFor={`${q.id}-${o.key}`} className="font-normal leading-snug">{o.label}</Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              )}
+            </div>
+          ))}
+          {quizErr && <p className="text-sm text-destructive">{quizErr}</p>}
+          <div className="flex gap-4">
+            <Button type="button" variant="outline" onClick={() => setStep(0)}>BACK</Button>
+            <Button type="button" variant="cta" onClick={next}>CONTINUE</Button>
+          </div>
+        </div>
+      )}
+
+      <div className={step === 2 ? "space-y-6" : "hidden"}>
       <div>
         <Label htmlFor="cv">CV (PDF, DOC or DOCX, max 5 MB)</Label>
         <Controller control={control} name="cv" render={({ field }) => (
@@ -163,7 +226,11 @@ export const ApplicationForm = ({ defaultRoleId }: { defaultRoleId?: string }) =
       </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit" variant="cta" disabled={isSubmitting}>{isSubmitting ? "SENDING…" : "SUBMIT APPLICATION"}</Button>
+      <div className="flex gap-4">
+        <Button type="button" variant="outline" onClick={() => setStep(1)}>BACK</Button>
+        <Button type="submit" variant="cta" disabled={isSubmitting}>{isSubmitting ? "SENDING…" : "SUBMIT APPLICATION"}</Button>
+      </div>
+      </div>
     </form>
   );
 };

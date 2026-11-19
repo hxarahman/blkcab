@@ -49,3 +49,20 @@ export function jobPostingJsonLd(role: JobRole) {
   }
   return ld;
 }
+
+export type QuizQuestion = Tables<"quiz_questions">;
+export type QuizOption = { key: string; label: string };
+export const QUIZ_SLUGS = ["barista", "back-of-house-prep", "senior-barista", "head-barista", "shift-lead-barista", "store-manager", "general"];
+
+export const isRequiredFor = (q: QuizQuestion, slug: string) =>
+  q.required_for ? q.required_for.includes(slug) : q.required !== false;
+
+/** Active questions for a role slug ('general' for general applications). Never includes answers. */
+export async function fetchQuestions(slug: string): Promise<QuizQuestion[]> {
+  const { data, error } = await supabase.from("quiz_questions").select("*").eq("is_active", true).contains("applies_to", [slug]).order("sort_order");
+  if (error) throw error;
+  return data ?? [];
+}
+
+export const formatScore = (a: { quiz_correct: number | null; quiz_total: number | null; quiz_score_pct: number | null }) =>
+  a.quiz_total ? `${a.quiz_correct}/${a.quiz_total} · ${a.quiz_score_pct}%` : "—";

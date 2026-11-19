@@ -13,7 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { STATUSES, TEAMS, type JobApplication, type JobRole } from "@/lib/careers";
+import { STATUSES, TEAMS, QUIZ_SLUGS, formatScore, type JobApplication, type JobRole, type QuizQuestion, type QuizOption } from "@/lib/careers";
 
 const Shell = ({ children }: { children: React.ReactNode }) => (
   <div className="min-h-screen">
@@ -48,6 +48,7 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
   const [apps, setApps] = useState<JobApplication[]>([]);
   const [status, setStatus] = useState("all"); const [role, setRole] = useState("all");
   const [open, setOpen] = useState<JobApplication | null>(null);
+  const [sort, setSort] = useState("newest"); const [minScore, setMinScore] = useState("0");
   const load = useCallback(async () => {
     const { data } = await supabase.from("job_applications").select("*").order("created_at", { ascending: false });
     setApps(data ?? []);
@@ -63,7 +64,10 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
     if (error || !data) return toast.error("Could not open CV");
     window.open(data.signedUrl, "_blank", "noopener");
   };
-  const shown = apps.filter((a) => (status === "all" || a.status === status) && (role === "all" || (role === "general" ? !a.role_id : a.role_id === role)));
+  const shown = apps
+    .filter((a) => (status === "all" || a.status === status) && (role === "all" || (role === "general" ? !a.role_id : a.role_id === role)))
+    .filter((a) => Number(minScore) === 0 || (a.quiz_score_pct ?? -1) >= Number(minScore))
+    .sort((x, y) => sort === "score" ? (y.quiz_score_pct ?? -1) - (x.quiz_score_pct ?? -1) : (y.created_at ?? "").localeCompare(x.created_at ?? ""));
 
   return (
     <div className="space-y-4">
@@ -72,18 +76,22 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
           <SelectContent><SelectItem value="all">All statuses</SelectItem>{STATUSES.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>
         <Select value={role} onValueChange={setRole}><SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
           <SelectContent><SelectItem value="all">All roles</SelectItem><SelectItem value="general">General application</SelectItem>{roles.map((r) => <SelectItem key={r.id} value={r.id}>{r.title}</SelectItem>)}</SelectContent></Select>
+        <Select value={minScore} onValueChange={setMinScore}><SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
+          <SelectContent>{["0", "50", "70", "80", "90"].map((v) => <SelectItem key={v} value={v}>{v === "0" ? "Any score" : `Score ≥ ${v}%`}</SelectItem>)}</SelectContent></Select>
+        <Select value={sort} onValueChange={setSort}><SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
+          <SelectContent><SelectItem value="newest">Newest first</SelectItem><SelectItem value="score">Sort by score</SelectItem></SelectContent></Select>
       </div>
       <Table>
-        <TableHeader><TableRow><TableHead>Date</TableHead><TableHead>Name</TableHead><TableHead>Role</TableHead><TableHead>Right to work</TableHead><TableHead>Availability</TableHead><TableHead>Status</TableHead></TableRow></TableHeader>
+        <TableHeader><TableRow><TableHead>Date</TableHead><TableHead>Name</TableHead><TableHead>Role</TableHead><TableHead>Right to work</TableHead><TableHead>Availability</TableHead><TableHead className="cursor-pointer" onClick={() => setSort(sort === "score" ? "newest" : "score")}>Quiz score {sort === "score" ? "↓" : ""}</TableHead><TableHead>Status</TableHead></TableRow></TableHeader>
         <TableBody>
           {shown.map((a) => (
             <TableRow key={a.id} className="cursor-pointer" onClick={() => setOpen(a)}>
               <TableCell>{a.created_at ? new Date(a.created_at).toLocaleDateString("en-GB") : ""}</TableCell>
               <TableCell>{a.full_name}</TableCell><TableCell>{a.role_title}</TableCell>
-              <TableCell>{a.right_to_work_uk ? "Yes" : "No"}</TableCell><TableCell>{a.availability}</TableCell><TableCell>{a.status}</TableCell>
+              <TableCell>{a.right_to_work_uk ? "Yes" : "No"}</TableCell><TableCell>{a.availability}</TableCell><TableCell>{formatScore(a)}</TableCell><TableCell>{a.status}</TableCell>
             </TableRow>
           ))}
-          {shown.length === 0 && <TableRow><TableCell colSpan={6} className="text-muted-foreground">No applications.</TableCell></TableRow>}
+          {shown.length === 0 && <TableRow><TableCell colSpan={7} className="text-muted-foreground">No applications.</TableCell></TableRow>}
         </TableBody>
       </Table>
       <Dialog open={!!open} onOpenChange={(o) => !o && setOpen(null)}>
@@ -97,6 +105,19 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
 
 const AppDetail = ({ app, onSave, onCv }: { app: JobApplication; onSave: (id: string, p: Partial<JobApplication>) => void; onCv: (p: string) => void }) => {
   const [notes, setNotes] = useState(app.admin_notes ?? "");
+  const [qa, setQa] = useState<{ q: QuizQuestion; ans: { answer_key: string | null; answer_text: string | null; is_correct: boolean | null } | null; correct?: string }[]>([]);
+  useEffect(() => {
+    (async () => {
+      const [{ data: ans }, { data: qs }, { data: keys }] = await Promise.all([
+        supabase.from("application_answers").select("*").eq("application_id", app.id),
+        supabase.from("quiz_questions").select("*").order("sort_order"),
+        supabase.from("quiz_answer_keys").select("*"),
+      ]);
+      const ids = new Set((ans ?? []).map((a) => a.question_id));
+      setQa((qs ?? []).filter((q) => ids.has(q.id)).map((q) => ({ q, ans: (ans ?? []).find((a) => a.question_id === q.id) ?? null, correct: (keys ?? []).find((k) => k.question_id === q.id)?.correct_key })));
+    })();
+  }, [app.id]);
+  const label = (q: QuizQuestion, k?: string | null) => (q.options as QuizOption[] | null)?.find((o) => o.key === k)?.label ?? k ?? "—";
   return (
     <>
       <DialogHeader><DialogTitle>{app.full_name} — {app.role_title}</DialogTitle></DialogHeader>
@@ -107,6 +128,18 @@ const AppDetail = ({ app, onSave, onCv }: { app: JobApplication; onSave: (id: st
         <p><b>Consent:</b> {app.consent_at ? new Date(app.consent_at).toLocaleString("en-GB") : ""}</p>
       </div>
       {app.cv_path && <Button variant="outline" onClick={() => onCv(app.cv_path!)}>DOWNLOAD CV</Button>}
+      <div className="space-y-3">
+        <h3 className="text-sm font-medium tracking-wide uppercase">Quiz — {formatScore(app)}</h3>
+        {qa.length === 0 && <p className="text-sm text-muted-foreground">No quiz answers.</p>}
+        {qa.map(({ q, ans, correct }) => (
+          <div key={q.id} className="text-sm border-b border-border pb-2">
+            <p className="font-medium">{q.code}. {q.prompt}</p>
+            {q.level === "free_text" ? <p className="whitespace-pre-wrap text-muted-foreground">{ans?.answer_text || "—"}</p> : (
+              <p>{ans?.is_correct ? "✓" : "✗"} {label(q, ans?.answer_key)}{!ans?.is_correct && <span className="text-muted-foreground"> — correct: {label(q, correct)}</span>}</p>
+            )}
+          </div>
+        ))}
+      </div>
       <div><Label>Status</Label>
         <Select value={app.status} onValueChange={(s) => onSave(app.id, { status: s })}><SelectTrigger><SelectValue /></SelectTrigger>
           <SelectContent>{STATUSES.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select></div>
@@ -191,6 +224,67 @@ const Settings = () => {
   );
 };
 
+
+type QForm = { id?: string; code: string; level: string; prompt: string; options: string; correct: string; applies_to: string[]; required: boolean; sort_order: number; is_active: boolean };
+const QuizAdmin = () => {
+  const [qs, setQs] = useState<QuizQuestion[]>([]); const [keys, setKeys] = useState<Record<string, string>>({});
+  const [ed, setEd] = useState<QForm | null>(null);
+  const load = useCallback(async () => {
+    const [{ data }, { data: k }] = await Promise.all([supabase.from("quiz_questions").select("*").order("sort_order"), supabase.from("quiz_answer_keys").select("*")]);
+    setQs(data ?? []); setKeys(Object.fromEntries((k ?? []).map((x) => [x.question_id, x.correct_key])));
+  }, []);
+  useEffect(() => { load(); }, [load]);
+  const toForm = (q: QuizQuestion): QForm => ({ id: q.id, code: q.code, level: q.level, prompt: q.prompt, options: ((q.options as QuizOption[] | null) ?? []).map((o) => `${o.key}) ${o.label}`).join("\n"), correct: keys[q.id] ?? "", applies_to: q.applies_to, required: q.required !== false, sort_order: q.sort_order ?? 0, is_active: !!q.is_active });
+  const save = async () => {
+    if (!ed || !ed.code.trim() || !ed.prompt.trim()) return toast.error("Code and question are required");
+    const options = ed.level === "free_text" ? null : lines(ed.options).map((l) => { const m = l.match(/^([a-z0-9]+)\)\s*(.+)$/i); return m ? { key: m[1].toLowerCase(), label: m[2] } : null; }).filter(Boolean) as QuizOption[];
+    if (options && (options.length < 2 || !options.some((o) => o.key === ed.correct.trim().toLowerCase()))) return toast.error("Add at least 2 options like 'a) Answer' and a correct key that matches one");
+    const row = { code: ed.code.trim(), level: ed.level, prompt: ed.prompt.trim(), options, applies_to: ed.applies_to, required: ed.required, sort_order: ed.sort_order, is_active: ed.is_active };
+    const res = ed.id ? await supabase.from("quiz_questions").update(row).eq("id", ed.id).select().single() : await supabase.from("quiz_questions").insert(row).select().single();
+    if (res.error || !res.data) return toast.error(res.error?.message ?? "Could not save");
+    if (options) { const { error } = await supabase.from("quiz_answer_keys").upsert({ question_id: res.data.id, correct_key: ed.correct.trim().toLowerCase() }); if (error) return toast.error(error.message); }
+    toast.success("Question saved"); setEd(null); load();
+  };
+  const toggle = async (q: QuizQuestion) => { await supabase.from("quiz_questions").update({ is_active: !q.is_active }).eq("id", q.id); load(); };
+  return (
+    <div className="space-y-4">
+      <Button variant="cta" onClick={() => setEd({ code: "", level: "basic", prompt: "", options: "a) \nb) \nc) \nd) ", correct: "", applies_to: [...QUIZ_SLUGS], required: true, sort_order: qs.length + 1, is_active: true })}>ADD QUESTION</Button>
+      <Table>
+        <TableHeader><TableRow><TableHead>Code</TableHead><TableHead>Level</TableHead><TableHead>Question</TableHead><TableHead>Answer</TableHead><TableHead>Active</TableHead><TableHead /></TableRow></TableHeader>
+        <TableBody>{qs.map((q) => (
+          <TableRow key={q.id}><TableCell>{q.code}</TableCell><TableCell>{q.level}</TableCell><TableCell className="max-w-md">{q.prompt}</TableCell><TableCell>{keys[q.id] ?? "—"}</TableCell>
+            <TableCell><Switch checked={!!q.is_active} onCheckedChange={() => toggle(q)} /></TableCell>
+            <TableCell><Button size="sm" variant="outline" onClick={() => setEd(toForm(q))}>EDIT</Button></TableCell></TableRow>
+        ))}</TableBody>
+      </Table>
+      <Dialog open={!!ed} onOpenChange={(o) => !o && setEd(null)}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader><DialogTitle>{ed?.id ? "Edit question" : "New question"}</DialogTitle></DialogHeader>
+          {ed && <div className="space-y-3">
+            <div className="grid grid-cols-3 gap-3">
+              <div><Label>Code</Label><Input value={ed.code} onChange={(e) => setEd({ ...ed, code: e.target.value })} /></div>
+              <div><Label>Level</Label><Select value={ed.level} onValueChange={(v) => setEd({ ...ed, level: v })}><SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>{["basic", "advanced", "free_text"].map((l) => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select></div>
+              <div><Label>Order</Label><Input type="number" value={ed.sort_order} onChange={(e) => setEd({ ...ed, sort_order: Number(e.target.value) })} /></div>
+            </div>
+            <div><Label>Question</Label><Textarea rows={2} value={ed.prompt} onChange={(e) => setEd({ ...ed, prompt: e.target.value })} /></div>
+            {ed.level !== "free_text" && <>
+              <div><Label>Options (one per line, e.g. "a) 1:2")</Label><Textarea rows={5} value={ed.options} onChange={(e) => setEd({ ...ed, options: e.target.value })} /></div>
+              <div><Label>Correct option key</Label><Input value={ed.correct} onChange={(e) => setEd({ ...ed, correct: e.target.value })} placeholder="e.g. b" /></div>
+            </>}
+            <div><Label>Applies to</Label><div className="grid grid-cols-2 gap-2 mt-2">{QUIZ_SLUGS.map((sl) => (
+              <label key={sl} className="flex items-center gap-2 text-sm"><input type="checkbox" checked={ed.applies_to.includes(sl)} onChange={(e) => setEd({ ...ed, applies_to: e.target.checked ? [...ed.applies_to, sl] : ed.applies_to.filter((x) => x !== sl) })} />{sl}</label>
+            ))}</div></div>
+            <div className="flex items-center gap-3"><Switch checked={ed.required} onCheckedChange={(v) => setEd({ ...ed, required: v })} id="qreq" /><Label htmlFor="qreq">Required</Label></div>
+            <div className="flex items-center gap-3"><Switch checked={ed.is_active} onCheckedChange={(v) => setEd({ ...ed, is_active: v })} id="qact" /><Label htmlFor="qact">Active</Label></div>
+            <Button variant="cta" onClick={save}>SAVE QUESTION</Button>
+          </div>}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+};
+
 const CareersAdmin = () => {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -226,9 +320,10 @@ const CareersAdmin = () => {
         <Button variant="outline" size="sm" onClick={() => supabase.auth.signOut()}>SIGN OUT</Button>
       </div>
       <Tabs defaultValue="applications">
-        <TabsList><TabsTrigger value="applications">APPLICATIONS</TabsTrigger><TabsTrigger value="roles">ROLES</TabsTrigger><TabsTrigger value="settings">SETTINGS</TabsTrigger></TabsList>
+        <TabsList><TabsTrigger value="applications">APPLICATIONS</TabsTrigger><TabsTrigger value="roles">ROLES</TabsTrigger><TabsTrigger value="quiz">QUIZ</TabsTrigger><TabsTrigger value="settings">SETTINGS</TabsTrigger></TabsList>
         <TabsContent value="applications" className="pt-6"><Applications roles={roles} /></TabsContent>
         <TabsContent value="roles" className="pt-6"><Roles roles={roles} reload={loadRoles} /></TabsContent>
+        <TabsContent value="quiz" className="pt-6"><QuizAdmin /></TabsContent>
         <TabsContent value="settings" className="pt-6"><Settings /></TabsContent>
       </Tabs>
     </Shell>

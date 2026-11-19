@@ -9,6 +9,51 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      application_answers: {
+        Row: {
+          answer_key: string | null
+          answer_text: string | null
+          application_id: string
+          created_at: string | null
+          id: string
+          is_correct: boolean | null
+          question_id: string | null
+        }
+        Insert: {
+          answer_key?: string | null
+          answer_text?: string | null
+          application_id: string
+          created_at?: string | null
+          id?: string
+          is_correct?: boolean | null
+          question_id?: string | null
+        }
+        Update: {
+          answer_key?: string | null
+          answer_text?: string | null
+          application_id?: string
+          created_at?: string | null
+          id?: string
+          is_correct?: boolean | null
+          question_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "application_answers_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "job_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "application_answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "quiz_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       careers_settings: {
         Row: {
           id: number
@@ -76,6 +121,9 @@ export type Database = {
           id: string
           location: string | null
           phone: string | null
+          quiz_correct: number | null
+          quiz_score_pct: number | null
+          quiz_total: number | null
           right_to_work_uk: boolean | null
           role_id: string | null
           role_title: string | null
@@ -94,6 +142,9 @@ export type Database = {
           id?: string
           location?: string | null
           phone?: string | null
+          quiz_correct?: number | null
+          quiz_score_pct?: number | null
+          quiz_total?: number | null
           right_to_work_uk?: boolean | null
           role_id?: string | null
           role_title?: string | null
@@ -112,6 +163,9 @@ export type Database = {
           id?: string
           location?: string | null
           phone?: string | null
+          quiz_correct?: number | null
+          quiz_score_pct?: number | null
+          quiz_total?: number | null
           right_to_work_uk?: boolean | null
           role_id?: string | null
           role_title?: string | null
@@ -214,6 +268,71 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_answer_keys: {
+        Row: {
+          correct_key: string
+          question_id: string
+        }
+        Insert: {
+          correct_key: string
+          question_id: string
+        }
+        Update: {
+          correct_key?: string
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_answer_keys_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: true
+            referencedRelation: "quiz_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_questions: {
+        Row: {
+          applies_to: string[]
+          code: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          level: string
+          options: Json | null
+          prompt: string
+          required: boolean | null
+          required_for: string[] | null
+          sort_order: number | null
+        }
+        Insert: {
+          applies_to?: string[]
+          code: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          level: string
+          options?: Json | null
+          prompt: string
+          required?: boolean | null
+          required_for?: string[] | null
+          sort_order?: number | null
+        }
+        Update: {
+          applies_to?: string[]
+          code?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          level?: string
+          options?: Json | null
+          prompt?: string
+          required?: boolean | null
+          required_for?: string[] | null
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
       reward_codes: {
         Row: {
           code: string
@@ -291,6 +410,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      submit_application: { Args: { payload: Json }; Returns: string }
     }
     Enums: {
       app_role: "admin"
