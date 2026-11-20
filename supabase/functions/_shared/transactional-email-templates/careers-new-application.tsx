@@ -30,6 +30,5 @@ export const template = {
   component: Email,
   subject: (d: Record<string, any>) => `New application: ${d.role || 'General application'} — ${d.name || 'Applicant'}`,
   displayName: 'Careers — new application (team)',
-  to: 'careers@blkcab.com',
   previewData: { id: '00000000-0000-0000-0000-000000000000', role: 'Barista', name: 'Jane Doe', email: 'jane@example.com', phone: '07000 000000', rightToWork: 'Yes', availability: 'Weekends', quiz: '7/9 · 78%', submitted: '20 Nov 2026, 09:30' },
 } satisfies TemplateEntry
