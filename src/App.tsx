@@ -16,6 +16,7 @@ import Careers from "./pages/Careers";
 import CareerRole from "./pages/CareerRole";
 import CareerApply from "./pages/CareerApply";
 import CareersAdmin from "./pages/CareersAdmin";
+import CareersAdminSetPassword from "./pages/CareersAdminSetPassword";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const queryClient = new QueryClient();
 const RouteTracker = () => {
   const { pathname } = useLocation();
   useEffect(() => {
+    if (pathname === "/careers/admin/set-password") return;
     trackPageView(pathname);
   }, [pathname]);
   return null;
@@ -45,6 +47,7 @@ const App = () => (
           <Route path="/careers" element={<Careers />} />
           <Route path="/careers/apply" element={<CareerApply />} />
           <Route path="/careers/admin" element={<CareersAdmin />} />
+          <Route path="/careers/admin/set-password" element={<CareersAdminSetPassword />} />
           <Route path="/careers/:slug" element={<CareerRole />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

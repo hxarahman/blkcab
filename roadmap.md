@@ -8,3 +8,5 @@
 - [ ] Owner: replace GA4 placeholder `G-XXXXXXXXXX` in index.html with the real measurement ID
 - [ ] Owner: fill in real opening hours in the Locations JSON-LD placeholder constant
 - [ ] Open: public leaderboard (`game_scores`) is readable by anyone — owner chose to leave it; fix only on request
+- [x] Create and verify the seven live Careers admins without passwords or emails; disable public signup and confirm the three domains can receive recovery redirects
+- [ ] Publish the Careers admin password setup and reset screens

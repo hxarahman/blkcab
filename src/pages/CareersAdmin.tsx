@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useLocation, useNavigate } from "react-router-dom";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/Header";
@@ -23,9 +24,43 @@ const Shell = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+const PasswordLinkRequest = ({ initialEmail, onBack }: { initialEmail: string; onBack: () => void }) => {
+  const [email, setEmail] = useState(initialEmail);
+  const [busy, setBusy] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  return (
+    <div className="max-w-sm mx-auto space-y-4 pt-16">
+      <h1 className="text-2xl md:text-3xl font-bold uppercase">Set or reset your password</h1>
+      {submitted ? <p role="status">If that email has admin access, we've sent a link to set your password.</p> : (
+        <form className="space-y-4" onSubmit={async (event) => {
+          event.preventDefault();
+          if (busy) return;
+          setBusy(true);
+          try {
+            await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
+              redirectTo: `${window.location.origin}/careers/admin/set-password`,
+            });
+          } catch {
+            // Never reveal whether an address has access or a message was sent.
+          } finally {
+            setBusy(false);
+            setSubmitted(true);
+          }
+        }}>
+          <div><Label htmlFor="recovery-email">Email</Label><Input id="recovery-email" type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} /></div>
+          <Button type="submit" variant="cta" disabled={busy}>{busy ? "Requesting…" : "Send password link"}</Button>
+        </form>
+      )}
+      <Button type="button" variant="link" className="px-0" onClick={onBack}>Back to sign in</Button>
+    </div>
+  );
+};
+
 const Login = () => {
   const [email, setEmail] = useState(""); const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null); const [busy, setBusy] = useState(false);
+  const [requestPassword, setRequestPassword] = useState(false);
+  if (requestPassword) return <PasswordLinkRequest initialEmail={email} onBack={() => setRequestPassword(false)} />;
   return (
     <form className="max-w-sm mx-auto space-y-4 pt-16" onSubmit={async (e) => {
       e.preventDefault(); setBusy(true); setErr(null);
@@ -37,7 +72,10 @@ const Login = () => {
       <div><Label htmlFor="em">Email</Label><Input id="em" type="email" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
       <div><Label htmlFor="pw">Password</Label><Input id="pw" type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></div>
       {err && <p className="text-sm text-destructive">{err}</p>}
-      <Button type="submit" variant="cta" disabled={busy}>SIGN IN</Button>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <Button type="submit" variant="cta" disabled={busy}>SIGN IN</Button>
+        <Button type="button" variant="link" className="px-0" onClick={() => setRequestPassword(true)}>Set or reset your password</Button>
+      </div>
     </form>
   );
 };
@@ -286,6 +324,8 @@ const QuizAdmin = () => {
 };
 
 const CareersAdmin = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate();
   const [session, setSession] = useState<Session | null | undefined>(undefined);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [roles, setRoles] = useState<JobRole[]>([]);
@@ -308,6 +348,7 @@ const CareersAdmin = () => {
   }, []);
   useEffect(() => { if (isAdmin) loadRoles(); }, [isAdmin, loadRoles]);
 
+  if (state?.requestPassword === true) return <Shell><PasswordLinkRequest initialEmail="" onBack={() => navigate("/careers/admin", { replace: true, state: null })} /></Shell>;
   if (session === undefined) return <Shell><p className="text-muted-foreground">Loading…</p></Shell>;
   if (!session) return <Shell><Login /></Shell>;
   if (isAdmin === null) return <Shell><p className="text-muted-foreground">Checking access…</p></Shell>;

@@ -1,1 +1,2 @@
 - Careers admin access is granted only via `public.user_roles` + `has_role()`; never add public sign-up — keeps applicant data admin-only.
+- Careers password setup uses a dedicated, non-indexed recovery callback and requires a verified recovery session, not an ordinary sign-in session — keeps password updates tied to email recovery.
