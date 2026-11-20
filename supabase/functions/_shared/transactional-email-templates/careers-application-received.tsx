@@ -22,6 +22,7 @@ const Email = ({ firstName, role }: Props) => (
 export const template = {
   component: Email,
   subject: 'Thanks for applying to BLK CAB',
+  fromName: 'BLK CAB® Careers',
   displayName: 'Careers — application received (applicant)',
   previewData: { firstName: 'Jane', role: 'Barista' },
 } satisfies TemplateEntry

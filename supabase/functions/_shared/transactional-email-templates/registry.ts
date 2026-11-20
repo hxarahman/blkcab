@@ -7,6 +7,8 @@ export interface TemplateEntry {
   previewData?: Record<string, any>
   /** Fixed recipient — overrides caller-provided recipientEmail when set. */
   to?: string
+  /** Optional From display name for this template; falls back to SITE_NAME. */
+  fromName?: string
 }
 
 /**

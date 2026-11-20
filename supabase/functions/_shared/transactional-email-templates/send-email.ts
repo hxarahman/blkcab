@@ -71,7 +71,8 @@ export async function sendTemplateEmail(
     await sendLovableEmail(
       {
         to: recipient,
-        from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+        // Object form: the SDK quotes/escapes the display name (formatEmailFrom).
+        from: { name: template.fromName || SITE_NAME, address: `noreply@${FROM_DOMAIN}` },
         sender_domain: SENDER_DOMAIN,
         subject,
         html,
