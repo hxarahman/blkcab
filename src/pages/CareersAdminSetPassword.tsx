@@ -79,9 +79,10 @@ export default function CareersAdminSetPassword() {
     <div className="min-h-screen">
       <Helmet><title>Set your Careers admin password — BLK CAB®</title><meta name="robots" content="noindex" /><meta name="referrer" content="no-referrer" /></Helmet>
       <Header />
-      <main className="container mx-auto px-4 py-16">
-        <div className="max-w-sm mx-auto space-y-4 pt-16">
-          <h1 className="text-2xl md:text-3xl font-bold uppercase">Set your password</h1>
+      <main className="min-h-screen bg-muted pt-16"><div className="container mx-auto px-4 py-16">
+        <div className="max-w-md mx-auto space-y-4 mt-16 rounded-2xl border border-border bg-card p-6 md:p-10 shadow-xl">
+          <p className="text-xs font-bold tracking-[0.25em] uppercase text-accent">BLK CAB® Careers admin</p>
+          <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">Set your password</h1>
           {status === "checking" && <p role="status">Checking your link…</p>}
           {status === "invalid" && <>
             <p role="alert">This password link is invalid or has expired.</p>
@@ -96,7 +97,7 @@ export default function CareersAdminSetPassword() {
             </form>
           )}
         </div>
-      </main>
+      </div></main>
     </div>
   );
 }

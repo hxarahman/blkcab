@@ -52,6 +52,14 @@ export const Footer = () => {
               >
                 TikTok
               </a>
+              <a 
+                href="https://soundcloud.com/blk-cab-r" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                SoundCloud
+              </a>
             </div>
           </div>
 

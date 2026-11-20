@@ -112,14 +112,17 @@ export const ApplicationForm = ({ defaultRoleId }: { defaultRoleId?: string }) =
 
   return (
     <form id="app-form" onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
-      <div className="space-y-3">
-        <div className="flex justify-between text-xs font-medium tracking-wide uppercase">
-          {["Your details", "Quick coffee questions", "CV & consent"].map((l, i) => (
-            <span key={l} className={i <= step ? "text-foreground" : "text-muted-foreground"}>{i + 1}. {l}</span>
-          ))}
-        </div>
-        <div className="h-1 bg-border"><div className="h-1 bg-accent transition-all" style={{ width: `${((step + 1) / 3) * 100}%` }} /></div>
-      </div>
+      <ol className="grid grid-cols-3 gap-2" aria-label="Application steps">
+        {["Your details", "Coffee questions", "CV & consent"].map((l, i) => (
+          <li key={l} className="space-y-2" aria-current={i === step ? "step" : undefined}>
+            <div className={`h-1.5 rounded-full transition-colors duration-500 ${i <= step ? "bg-accent" : "bg-border"}`} />
+            <div className="flex items-center gap-2">
+              <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-bold transition-colors ${i < step ? "bg-accent text-accent-foreground" : i === step ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground"}`}>{i < step ? "✓" : i + 1}</span>
+              <span className={`text-[11px] md:text-xs font-bold tracking-wide uppercase leading-tight ${i <= step ? "text-foreground" : "text-muted-foreground"}`}>{l}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
 
       <div className={step === 0 ? "space-y-6" : "hidden"}>
       <div className="grid md:grid-cols-2 gap-6">

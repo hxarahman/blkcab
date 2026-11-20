@@ -14,13 +14,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { StatusBadge } from "@/components/careers/CareersUI";
 import { STATUSES, TEAMS, QUIZ_SLUGS, formatScore, type JobApplication, type JobRole, type QuizQuestion, type QuizOption } from "@/lib/careers";
 
 const Shell = ({ children }: { children: React.ReactNode }) => (
   <div className="min-h-screen">
     <Helmet><title>Careers admin — BLK CAB®</title><meta name="robots" content="noindex" /></Helmet>
     <Header />
-    <main className="pt-16 py-16 container mx-auto px-4 max-w-6xl">{children}</main>
+    <main className="min-h-screen bg-muted pt-16"><div className="py-10 md:py-16 container mx-auto px-4 max-w-6xl">{children}</div></main>
   </div>
 );
 
@@ -29,8 +30,9 @@ const PasswordLinkRequest = ({ initialEmail, onBack }: { initialEmail: string; o
   const [busy, setBusy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   return (
-    <div className="max-w-sm mx-auto space-y-4 pt-16">
-      <h1 className="text-2xl md:text-3xl font-bold uppercase">Set or reset your password</h1>
+    <div className="max-w-md mx-auto space-y-4 mt-16 rounded-2xl border border-border bg-card p-6 md:p-10 shadow-xl">
+      <p className="text-xs font-bold tracking-[0.25em] uppercase text-accent">BLK CAB® Careers admin</p>
+      <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">Set or reset your password</h1>
       {submitted ? <p role="status">If that email has admin access, we've sent a link to set your password.</p> : (
         <form className="space-y-4" onSubmit={async (event) => {
           event.preventDefault();
@@ -62,13 +64,14 @@ const Login = () => {
   const [requestPassword, setRequestPassword] = useState(false);
   if (requestPassword) return <PasswordLinkRequest initialEmail={email} onBack={() => setRequestPassword(false)} />;
   return (
-    <form className="max-w-sm mx-auto space-y-4 pt-16" onSubmit={async (e) => {
+    <form className="max-w-md mx-auto space-y-4 mt-16 rounded-2xl border border-border bg-card p-6 md:p-10 shadow-xl" onSubmit={async (e) => {
       e.preventDefault(); setBusy(true); setErr(null);
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) setErr("Sign in failed. Check your email and password.");
       setBusy(false);
     }}>
-      <h1 className="text-2xl md:text-3xl font-bold tracking-tight uppercase">Careers admin</h1>
+      <p className="text-xs font-bold tracking-[0.25em] uppercase text-accent">BLK CAB® Careers admin</p>
+      <h1 className="text-3xl md:text-4xl font-bold tracking-tight uppercase">Sign in</h1>
       <div><Label htmlFor="em">Email</Label><Input id="em" type="email" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
       <div><Label htmlFor="pw">Password</Label><Input id="pw" type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></div>
       {err && <p className="text-sm text-destructive">{err}</p>}
@@ -116,9 +119,23 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
     .filter((a) => Number(minScore) === 0 || (a.quiz_score_pct ?? -1) >= Number(minScore))
     .sort((x, y) => sort === "score" ? (y.quiz_score_pct ?? -1) - (x.quiz_score_pct ?? -1) : (y.created_at ?? "").localeCompare(x.created_at ?? ""));
 
+  const weekAgo = Date.now() - 7 * 864e5;
+  const newThisWeek = apps.filter((a) => a.created_at && new Date(a.created_at).getTime() >= weekAgo).length;
+  const byRole = new Map<string, number[]>();
+  apps.forEach((a) => { if (a.quiz_score_pct == null) return; const k = a.role_title ?? "General"; byRole.set(k, [...(byRole.get(k) ?? []), a.quiz_score_pct]); });
+  const avgs = [...byRole.entries()].map(([k, v]) => [k, Math.round(v.reduce((x, y) => x + y, 0) / v.length)] as const);
+
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap gap-4">
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="rounded-2xl bg-primary text-primary-foreground p-5"><p className="text-[11px] font-bold uppercase tracking-widest text-primary-foreground/60">Total applications</p><p className="text-4xl font-bold mt-2">{apps.length}</p></div>
+        <div className="rounded-2xl bg-card border border-border p-5"><p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">New this week</p><p className="text-4xl font-bold mt-2">{newThisWeek}</p></div>
+        <div className="col-span-2 rounded-2xl bg-card border border-border p-5"><p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Avg quiz score by role</p>
+          {avgs.length === 0 ? <p className="text-sm text-muted-foreground mt-3">No quiz scores yet.</p> : (
+            <ul className="mt-3 space-y-1.5">{avgs.map(([k, v]) => <li key={k} className="flex items-center gap-3 text-sm"><span className="w-32 truncate font-medium">{k}</span><span className="flex-1 h-1.5 rounded-full bg-muted"><span className="block h-1.5 rounded-full bg-accent" style={{ width: `${v}%` }} /></span><span className="w-10 text-right font-bold">{v}%</span></li>)}</ul>)}
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-3">
         <Select value={status} onValueChange={setStatus}><SelectTrigger className="w-48"><SelectValue /></SelectTrigger>
           <SelectContent><SelectItem value="all">All statuses</SelectItem>{STATUSES.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>
         <Select value={role} onValueChange={setRole}><SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
@@ -128,19 +145,21 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
         <Select value={sort} onValueChange={setSort}><SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
           <SelectContent><SelectItem value="newest">Newest first</SelectItem><SelectItem value="score">Sort by score</SelectItem></SelectContent></Select>
       </div>
+      <div className="rounded-2xl border border-border bg-card overflow-hidden">
       <Table>
-        <TableHeader><TableRow><TableHead>Date</TableHead><TableHead>Name</TableHead><TableHead>Role</TableHead><TableHead>Right to work</TableHead><TableHead>Availability</TableHead><TableHead className="cursor-pointer" onClick={() => setSort(sort === "score" ? "newest" : "score")}>Quiz score {sort === "score" ? "↓" : ""}</TableHead><TableHead>Status</TableHead></TableRow></TableHeader>
+        <TableHeader className="bg-primary [&_th]:text-primary-foreground [&_th]:text-[11px] [&_th]:font-bold [&_th]:uppercase [&_th]:tracking-wider [&_th]:whitespace-nowrap"><TableRow className="hover:bg-primary"><TableHead>Date</TableHead><TableHead>Name</TableHead><TableHead>Role</TableHead><TableHead>Right to work</TableHead><TableHead>Availability</TableHead><TableHead className="cursor-pointer" onClick={() => setSort(sort === "score" ? "newest" : "score")}>Quiz score {sort === "score" ? "↓" : ""}</TableHead><TableHead>Status</TableHead></TableRow></TableHeader>
         <TableBody>
           {shown.map((a) => (
             <TableRow key={a.id} className="cursor-pointer" onClick={() => setOpen(a)}>
               <TableCell>{a.created_at ? new Date(a.created_at).toLocaleDateString("en-GB") : ""}</TableCell>
               <TableCell>{a.full_name}</TableCell><TableCell>{a.role_title}</TableCell>
-              <TableCell>{a.right_to_work_uk ? "Yes" : "No"}</TableCell><TableCell>{a.availability}</TableCell><TableCell>{formatScore(a)}</TableCell><TableCell>{a.status}</TableCell>
+              <TableCell>{a.right_to_work_uk ? "Yes" : "No"}</TableCell><TableCell>{a.availability}</TableCell><TableCell>{formatScore(a)}</TableCell><TableCell><StatusBadge status={a.status ?? "new"} /></TableCell>
             </TableRow>
           ))}
-          {shown.length === 0 && <TableRow><TableCell colSpan={7} className="text-muted-foreground">No applications.</TableCell></TableRow>}
+          {shown.length === 0 && <TableRow><TableCell colSpan={7} className="py-12 text-center text-muted-foreground"><p className="text-lg font-bold uppercase text-foreground">No applications yet</p><p className="text-sm">Try clearing the filters, or check back soon.</p></TableCell></TableRow>}
         </TableBody>
       </Table>
+      </div>
       <Dialog open={!!open} onOpenChange={(o) => !o && setOpen(null)}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           {open && <AppDetail app={open} onSave={update} onCv={downloadCv} />}
@@ -365,12 +384,12 @@ const CareersAdmin = () => {
 
   return (
     <Shell>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight uppercase">Careers admin</h1>
-        <Button variant="outline" size="sm" onClick={() => supabase.auth.signOut()}>SIGN OUT</Button>
+      <div className="flex items-center justify-between gap-4 mb-8 rounded-2xl bg-primary text-primary-foreground px-5 py-5 md:px-8 md:py-6">
+        <div><p className="text-[11px] font-bold tracking-[0.25em] uppercase text-accent">BLK CAB® Careers</p><h1 className="text-2xl md:text-4xl font-bold tracking-tight uppercase">Admin</h1></div>
+        <Button variant="pebble" size="sm" onClick={() => supabase.auth.signOut()}>SIGN OUT</Button>
       </div>
       <Tabs defaultValue="applications">
-        <TabsList><TabsTrigger value="applications">APPLICATIONS</TabsTrigger><TabsTrigger value="roles">ROLES</TabsTrigger><TabsTrigger value="quiz">QUIZ</TabsTrigger><TabsTrigger value="settings">SETTINGS</TabsTrigger></TabsList>
+        <TabsList className="h-auto w-full justify-start overflow-x-auto rounded-full bg-card border border-border p-1 [&>button]:rounded-full [&>button]:px-4 [&>button]:py-2 [&>button]:text-xs [&>button]:font-bold [&>button]:tracking-wider [&>button[data-state=active]]:bg-primary [&>button[data-state=active]]:text-primary-foreground"><TabsTrigger value="applications">APPLICATIONS</TabsTrigger><TabsTrigger value="roles">ROLES</TabsTrigger><TabsTrigger value="quiz">QUIZ</TabsTrigger><TabsTrigger value="settings">SETTINGS</TabsTrigger></TabsList>
         <TabsContent value="applications" className="pt-6"><Applications roles={roles} /></TabsContent>
         <TabsContent value="roles" className="pt-6"><Roles roles={roles} reload={loadRoles} /></TabsContent>
         <TabsContent value="quiz" className="pt-6"><QuizAdmin /></TabsContent>
