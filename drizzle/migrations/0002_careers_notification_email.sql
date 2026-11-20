@@ -1,0 +1,2 @@
+ALTER TABLE public.careers_settings ALTER COLUMN notification_email SET DEFAULT 'careers@blkcab.com';
+UPDATE public.careers_settings SET notification_email = 'careers@blkcab.com' WHERE notification_email = 'careers@blkcabcoffee.com';

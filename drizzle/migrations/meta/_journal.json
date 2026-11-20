@@ -15,6 +15,13 @@
       "when": 1795112140080,
       "tag": "0001_careers_quiz",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795155373006,
+      "tag": "0002_careers_notification_email",
+      "breakpoints": true
     }
   ]
 }
