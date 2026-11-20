@@ -15,7 +15,7 @@ const corsHeaders = {
 }
 
 // Configuration
-const SITE_NAME = "Blkcab Coffee Website"
+const SITE_NAME = "BLK CAB"
 const SENDER_DOMAIN = "notify.blkcab.com"
 const ROOT_DOMAIN = "blkcab.com"
 const FROM_DOMAIN = "blkcab.com"

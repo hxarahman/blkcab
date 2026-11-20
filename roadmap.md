@@ -10,3 +10,5 @@
 - [ ] Open: public leaderboard (`game_scores`) is readable by anyone — owner chose to leave it; fix only on request
 - [x] Create and verify the seven live Careers admins without passwords or emails; disable public signup and confirm the three domains can receive recovery redirects
 - [ ] Publish the Careers admin password setup and reset screens
+- [x] Auth email sender display name → "BLK CAB" (deploy auth-email-hook)
+- [x] Create 7 more Careers admins (blkcab.com / blkcabcoffee.com variants), no passwords or emails
