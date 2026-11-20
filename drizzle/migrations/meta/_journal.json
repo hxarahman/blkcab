@@ -29,6 +29,13 @@
       "when": 1795159567862,
       "tag": "0003_careers_role_copy_defaults",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1795159688629,
+      "tag": "0004_careers_backfill_final_role_copy",
+      "breakpoints": true
     }
   ]
 }
