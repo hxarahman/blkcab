@@ -1,0 +1,1 @@
+ALTER TABLE public.job_applications ADD COLUMN IF NOT EXISTS admin_notified_at timestamptz, ADD COLUMN IF NOT EXISTS applicant_notified_at timestamptz;

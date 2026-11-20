@@ -1,0 +1,12 @@
+export const main = { backgroundColor: '#ffffff', fontFamily: 'Helvetica, Arial, sans-serif', margin: 0, padding: '24px 0' }
+export const container = { backgroundColor: '#f4efe6', maxWidth: '560px', margin: '0 auto', padding: '0 0 24px' }
+export const band = { backgroundColor: '#0b0b0b', padding: '20px 28px' }
+export const wordmark = { color: '#f4efe6', fontSize: '22px', fontWeight: 800, letterSpacing: '4px', margin: 0 }
+export const inner = { padding: '8px 28px 0' }
+export const h1 = { color: '#0b0b0b', fontSize: '20px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase' as const, margin: '24px 0 16px' }
+export const text = { color: '#2a2a2a', fontSize: '15px', lineHeight: '22px', margin: '0 0 14px' }
+export const label = { color: '#6b6b6b', fontSize: '11px', letterSpacing: '1.5px', textTransform: 'uppercase' as const, margin: '12px 0 2px' }
+export const value = { color: '#0b0b0b', fontSize: '15px', margin: 0 }
+export const button = { backgroundColor: '#0b0b0b', color: '#f4efe6', fontSize: '13px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, padding: '14px 22px', borderRadius: '999px', textDecoration: 'none', display: 'inline-block', marginTop: '20px' }
+export const link = { color: '#0b0b0b', textDecoration: 'underline' }
+export const small = { color: '#6b6b6b', fontSize: '12px', margin: '20px 0 0' }

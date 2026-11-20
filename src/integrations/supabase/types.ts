@@ -116,6 +116,8 @@ export type Database = {
         Row: {
           about: string | null
           admin_notes: string | null
+          admin_notified_at: string | null
+          applicant_notified_at: string | null
           availability: string | null
           consent_at: string | null
           created_at: string | null
@@ -137,6 +139,8 @@ export type Database = {
         Insert: {
           about?: string | null
           admin_notes?: string | null
+          admin_notified_at?: string | null
+          applicant_notified_at?: string | null
           availability?: string | null
           consent_at?: string | null
           created_at?: string | null
@@ -158,6 +162,8 @@ export type Database = {
         Update: {
           about?: string | null
           admin_notes?: string | null
+          admin_notified_at?: string | null
+          applicant_notified_at?: string | null
           availability?: string | null
           consent_at?: string | null
           created_at?: string | null

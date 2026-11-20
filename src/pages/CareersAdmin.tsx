@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { Header } from "@/components/Header";
@@ -92,6 +92,15 @@ const Applications = ({ roles }: { roles: JobRole[] }) => {
     setApps(data ?? []);
   }, []);
   useEffect(() => { load(); }, [load]);
+  const [params, setParams] = useSearchParams();
+  const deepId = params.get("application");
+  useEffect(() => {
+    if (!deepId || apps.length === 0) return;
+    const found = apps.find((a) => a.id === deepId);
+    if (found) setOpen(found);
+    else toast.error("Application not found");
+    params.delete("application"); setParams(params, { replace: true });
+  }, [deepId, apps, params, setParams]);
   const update = async (id: string, patch: Partial<JobApplication>) => {
     const { error } = await supabase.from("job_applications").update(patch).eq("id", id);
     if (error) return toast.error("Could not save");
