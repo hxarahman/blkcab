@@ -15,12 +15,13 @@ import brandCup from "@/assets/brand-cup.jpg";
 import brandDrink from "@/assets/brand-drink.jpg";
 import brandMemories from "@/assets/brand-memories.jpg";
 import heroCoffee from "@/assets/hero-coffee.jpg";
+import cabbistaSticker from "@/assets/game/sticker-cabista.png";
 import storefront from "@/assets/upcoming-london-storefront.jpeg";
 
 const PERKS = [
   { icon: Coffee, title: "Craft & training", text: "Learn specialty coffee properly — from dial-in to latte art — with hands-on training on the bar." },
   { icon: GraduationCap, title: "Grow with us", text: "We promote from within. Barista today, shift lead or manager tomorrow." },
-  { icon: Users, title: "Team & culture", text: "Coffee & People isn't a slogan. We look after guests and each other." },
+  { icon: Users, title: "Team & culture", text: "Coffee & People isn't a slogan. Our Cabbistas look after guests and each other." },
   { icon: Music, title: "Music on the bar", text: "Every shift has a soundtrack. Our playlists are part of the BLK CAB experience." },
   { icon: MapPin, title: "London locations", text: "Work in the heart of central London, with new sites on the way." },
   { icon: Sparkles, title: "Competitive perks", text: "Competitive pay and perks, plus all the coffee you can handle." },
@@ -64,6 +65,7 @@ const Careers = () => {
             <div className="space-y-6 careers-anim animate-slide-up">
               <Eyebrow className="text-accent">Careers at BLK CAB®</Eyebrow>
               <h1 className="text-6xl sm:text-7xl md:text-9xl font-bold uppercase leading-[0.85] tracking-tight">Join<br />the cab.</h1>
+              <p className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-accent">Become a Cabbista.</p>
               <p className="max-w-xl text-lg md:text-xl font-light text-primary-foreground/85">
                 BLK CAB® is premium specialty coffee in the heart of London, built on Coffee &amp; People. We care about hospitality, craft and each other — and we grow our team from within.
               </p>
@@ -86,6 +88,20 @@ const Careers = () => {
             <Reveal delay={150} className="relative">
               <img src={brandCup} alt="BLK CAB coffee cup" loading="lazy" decoding="async" width={600} height={750} className="w-full aspect-[4/5] object-cover rounded-2xl" />
               <img src={bcSticker} alt="" loading="lazy" width={140} height={140} className="absolute -bottom-6 -left-6 w-24 md:w-32 -rotate-12 drop-shadow-xl" />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* CABBISTA */}
+        <section className="relative overflow-hidden bg-accent text-accent-foreground py-14 md:py-20">
+          <div className="container mx-auto px-4 max-w-5xl grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
+            <Reveal className="flex justify-center">
+              <img src={cabbistaSticker} alt="Cabbista sticker" loading="lazy" decoding="async" width={260} height={260} className="w-40 md:w-60 -rotate-6 drop-shadow-2xl transition-transform duration-500 hover:rotate-3 hover:scale-105" />
+            </Reveal>
+            <Reveal delay={120} className="space-y-4">
+              <Eyebrow>Say it with us</Eyebrow>
+              <h2 className="text-5xl md:text-7xl font-bold uppercase leading-[0.9] tracking-tight">Cab·bis·ta</h2>
+              <p className="text-xl md:text-2xl font-medium max-w-2xl">We call our baristas Cabbistas — a nod to London's legendary cabbies. Because we're cool like that.</p>
             </Reveal>
           </div>
         </section>
