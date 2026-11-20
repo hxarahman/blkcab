@@ -149,7 +149,7 @@ const AppDetail = ({ app, onSave, onCv }: { app: JobApplication; onSave: (id: st
   );
 };
 
-const emptyRole = { slug: "", title: "", team: "Front of House", summary: "", description: "", responsibilities: "", requirements: "", pay: "Competitive — [PLACEHOLDER: pay to be confirmed]", hours: "[PLACEHOLDER: hours to be confirmed]", perks: "[PLACEHOLDER: perks to be confirmed]", employment_type: "FULL_TIME" };
+const emptyRole = { slug: "", title: "", team: "Front of House", summary: "", description: "", responsibilities: "", requirements: "", pay: "Competitive", hours: "Competitive — flexible shift patterns", perks: "Competitive benefits package", employment_type: "FULL_TIME" };
 type RoleForm = typeof emptyRole;
 const toForm = (r: JobRole): RoleForm => ({ slug: r.slug, title: r.title, team: r.team ?? "", summary: r.summary ?? "", description: r.description ?? "", responsibilities: (r.responsibilities ?? []).join("\n"), requirements: (r.requirements ?? []).join("\n"), pay: r.pay ?? "", hours: r.hours ?? "", perks: (r.perks ?? []).join("\n"), employment_type: r.employment_type ?? "FULL_TIME" });
 
