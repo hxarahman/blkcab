@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Seo } from "@/components/Seo";
 import { Button } from "@/components/ui/button";
-import { Eyebrow, Reveal, Ticker } from "@/components/careers/CareersUI";
+import { CareersVideo, Eyebrow, Reveal, Ticker } from "@/components/careers/CareersUI";
 import { employmentLabel, fetchOpenRoles, TEAMS, type JobRole } from "@/lib/careers";
 import est2017 from "@/assets/est-2017-sticker.png";
 import bcSticker from "@/assets/blk-cab-sticker.png";
@@ -14,7 +14,6 @@ import stickerBadge from "@/assets/sticker-badge.png";
 import brandCup from "@/assets/brand-cup.jpg";
 import brandDrink from "@/assets/brand-drink.jpg";
 import brandMemories from "@/assets/brand-memories.jpg";
-import heroCoffee from "@/assets/hero-coffee.jpg";
 import cabbistaSticker from "@/assets/game/sticker-cabista.png";
 import storefront from "@/assets/upcoming-london-storefront.jpeg";
 
@@ -58,13 +57,14 @@ const Careers = () => {
       <main className="pt-16">
         {/* HERO */}
         <section className="relative overflow-hidden bg-primary text-primary-foreground">
-          <img src={heroCoffee} alt="" width={1600} height={1000} className="absolute inset-0 h-full w-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/70 to-primary" />
-          <div className="relative container mx-auto px-4 max-w-5xl pt-16 pb-12 md:pt-28 md:pb-20">
-            <img src={est2017} alt="Est. 2017" width={120} height={120} className="careers-anim absolute right-4 top-8 w-20 md:w-28 rotate-12 animate-fade-in" />
-            <div className="space-y-6 careers-anim animate-slide-up">
+          <div className="relative container mx-auto px-4 max-w-6xl md:grid md:grid-cols-[1fr_auto] md:gap-12 md:items-center min-h-[calc(100svh-4rem)] md:min-h-0 flex flex-col justify-end pt-24 pb-10 md:pt-20 md:pb-20">
+            <CareersVideo src="/careers/clip2.mp4" poster="/careers/clip2-poster.jpg" fadeLoop
+              className="absolute inset-0 md:relative md:inset-auto md:order-2 md:w-[300px] lg:w-[340px] md:aspect-[9/16] md:rounded-[2.25rem] md:border-[6px] md:border-primary-foreground/15 md:shadow-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/60 to-primary md:hidden" aria-hidden />
+            <img src={est2017} alt="Est. 2017" width={120} height={120} className="careers-anim absolute right-4 top-8 z-10 w-20 md:w-28 rotate-12 animate-fade-in md:right-[260px] lg:right-[300px] md:top-14" />
+            <div className="relative z-10 space-y-6 careers-anim animate-slide-up">
               <Eyebrow className="text-accent">Careers at BLK CAB®</Eyebrow>
-              <h1 className="text-6xl sm:text-7xl md:text-9xl font-bold uppercase leading-[0.85] tracking-tight">Join<br />the cab.</h1>
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold uppercase leading-[0.85] tracking-tight">Join<br />the cab.</h1>
               <p className="text-2xl md:text-4xl font-bold uppercase tracking-tight text-accent">Become a Cabbista.</p>
               <p className="max-w-xl text-lg md:text-xl font-light text-primary-foreground/85">
                 BLK CAB® is premium specialty coffee in the heart of London, built on Coffee &amp; People. We care about hospitality, craft and each other — and we grow our team from within.
@@ -87,6 +87,7 @@ const Careers = () => {
             </Reveal>
             <Reveal delay={150} className="relative">
               <img src={brandCup} alt="BLK CAB coffee cup" loading="lazy" decoding="async" width={600} height={750} className="w-full aspect-[4/5] object-cover rounded-2xl" />
+              <CareersVideo src="/careers/clip1.mp4" poster="/careers/clip1-poster.jpg" lazy className="absolute -top-5 -right-3 md:-right-6 w-24 md:w-32 aspect-[9/16] rounded-2xl border-4 border-background shadow-2xl rotate-3" />
               <img src={bcSticker} alt="" loading="lazy" width={140} height={140} className="absolute -bottom-6 -left-6 w-24 md:w-32 -rotate-12 drop-shadow-xl" />
             </Reveal>
           </div>

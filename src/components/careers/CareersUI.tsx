@@ -49,3 +49,49 @@ export const StatusBadge = ({ status }: { status: string }) => (
 export const Eyebrow = ({ children, className }: { children: ReactNode; className?: string }) => (
   <p className={cn("text-xs font-bold tracking-[0.25em] uppercase", className)}>{children}</p>
 );
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+/**
+ * Decorative muted looping clip. Poster sits underneath (fixed box from the parent → no CLS).
+ * Reduced motion: poster only. Pauses off-screen. `lazy` mounts the <video> only near the viewport.
+ * `fadeLoop` fades the video out over the last ~0.4s so the restart crossfades with the poster.
+ */
+export const CareersVideo = ({ src, poster, lazy = false, fadeLoop = false, className }: { src: string; poster: string; lazy?: boolean; fadeLoop?: boolean; className?: string }) => {
+  const box = useRef<HTMLDivElement>(null);
+  const vid = useRef<HTMLVideoElement>(null);
+  const [reduced] = useState(prefersReducedMotion);
+  const [mounted, setMounted] = useState(!lazy);
+  const [visible, setVisible] = useState(false);
+  const [faded, setFaded] = useState(false);
+
+  useEffect(() => {
+    if (reduced || !box.current || typeof IntersectionObserver === "undefined") { setMounted(true); setVisible(true); return; }
+    const io = new IntersectionObserver(([e]) => { setVisible(e.isIntersecting); if (e.isIntersecting) setMounted(true); }, { rootMargin: "200px 0px" });
+    io.observe(box.current);
+    return () => io.disconnect();
+  }, [reduced]);
+
+  useEffect(() => {
+    const v = vid.current; if (!v) return;
+    if (visible) v.play().catch(() => {}); else v.pause();
+  }, [visible, mounted]);
+
+  const onTime = () => {
+    const v = vid.current; if (!v || !fadeLoop || !v.duration) return;
+    const fade = v.duration - v.currentTime < 0.4 || v.currentTime < 0.15;
+    if (fade !== faded) setFaded(fade);
+  };
+
+  return (
+    <div ref={box} aria-hidden="true" className={cn("relative overflow-hidden", className)}>
+      <img src={poster} alt="" width={720} height={1280} loading={lazy ? "lazy" : "eager"} decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+      {!reduced && mounted && (
+        <video ref={vid} src={src} poster={poster} autoPlay muted loop playsInline preload={lazy ? "none" : "metadata"}
+          onTimeUpdate={fadeLoop ? onTime : undefined} tabIndex={-1} disablePictureInPicture
+          className={cn("absolute inset-0 h-full w-full object-cover transition-opacity duration-300", faded ? "opacity-0" : "opacity-100")} />
+      )}
+    </div>
+  );
+};
