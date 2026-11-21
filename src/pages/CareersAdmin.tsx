@@ -40,7 +40,7 @@ const PasswordLinkRequest = ({ initialEmail, onBack }: { initialEmail: string; o
           setBusy(true);
           try {
             await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
-              redirectTo: `${window.location.origin}/careers/admin/set-password`,
+              redirectTo: "https://blkcab.com/careers/admin/set-password",
             });
           } catch {
             // Never reveal whether an address has access or a message was sent.
